@@ -6,12 +6,13 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/Spring"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/Think"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/Struts2"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/JAXP"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/NET"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/Effictive"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/Oracle"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/JavaScript"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/Jquery"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/JAVA-JAXP"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/JAVA-NET"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/JAVA-设计模式"/>
         <property name="java-output-path" value="/Java_Study/WebRoot/WEB-INF/classes"/>
         <property name="context-root" value="Java_Study"/>
     </wb-module>
