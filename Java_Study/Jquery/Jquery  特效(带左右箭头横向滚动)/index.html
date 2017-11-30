@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>jquery特效(带左右箭头横向滚动)</title>
+<link type="text/css" href="css/jquery-crossrange-scroll.css" rel="stylesheet" />
+<style type="">
+ .productshow{
+	width:790px;
+	height:150px;
+	padding:4px 0;
+	margin:20px auto;
+	position:relative;
+	text-align:center;
+	font-family:微软雅黑, 黑体;
+	background-color: white;
+  }
+  .productshow .scrollcontainer{
+	width:690px;
+	height:148px;
+	overflow:hidden;
+	position:relative;
+	margin:0 auto;
+  }
+  .productshow .scrollcontainer ul{
+	width:20000px;
+	position:absolute;
+	left:0px;
+	top:0px;
+  }
+  .productshow .scrollcontainer li{
+	float:left;
+	width:230px;
+	height:130px;
+	text-align:center;
+  }
+  .productshow .scrollcontainer li div{
+	height:95px;
+	width:230px;
+	overflow:hidden;
+	text-align:center;
+  }
+  .productshow .scrollcontainer li p{
+	margin:0;
+	line-height:32px;
+  }
+	  
+</style>
+
+</head>
+
+<body>
+
+<h2>一、左右切换：每次移动固定距离</h2>
+<div class="productshow">
+	<div class="scrollcontainer">
+		<ul>
+			<li>
+				<div><a href="###"><img src="images/1.jpg" alt="" /></a></div>
+				<p><a href="">1.家电彩涂钢板</a></p>
+			</li>
+			<li>
+				<div><a href="###"><img src="images/2.jpg" alt="" /></a></div>
+				<p><a href="">2.幻彩变色彩涂钢板</a></p>
+			</li>
+			<li>
+				<div><a href="###"><img src="images/3.jpg" alt="" /></a></div>
+				<p><a href="">3.环保彩涂钢板</a></p>
+			</li>
+			<li>
+				<div><a href="###"><img src="images/4.jpg" alt="" /></a></div>
+				<p><a href="">4.家电彩涂钢板</a></p>
+			</li>
+		</ul>
+	</div>
+	<a class="abtn aleft" href="#left"></a>
+	<a class="abtn aright" href="#right"></a>
+</div>
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery-crossrange-scroll.js"></script>
+<script type="text/javascript">
+	$(function(){
+		//一、左右切换：每次移动固定距离;
+		$(".productshow:eq(0)").crossrange_scroll({
+			unitdisplayed:3,
+			numtoMove:3
+		});
+		
+		$("a").focus(function(){this.blur();});
+	});
+	</script>
+
+</body>
+</html>

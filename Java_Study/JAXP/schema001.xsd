@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"  
+        targetNamespace="http://www.example.org/schema001" 
+        xmlns:tns="http://www.example.org/schema001"
+        elementFormDefault="qualified">
+        
+   <element name="user">
+        <complexType>
+           <sequence>
+              <element name="id" type="int"></element>
+              <element name="username" type="string"></element>
+              <element name="born" type="date"></element>
+           </sequence>
+        </complexType>
+   </element>
+</schema>
+<!-- 
+  1.命名空间
+    xmlns="http://www.w3.org/2001/XMLSchema" 默认命名空间 ，只能允许有一个默认的命名空间
+    targetNamespace="http://www.example.org/schema001"  : 这个schema文件的命名空间
+    xmlns:tns="http://www.example.org/schema001"  在其他xml文件中访问这个命名空间的时候，必须在前面加上<tns:
+    
+  2.在xml中引入schema
+   >2.1 通过命名空进引入
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.example.org/schema001"
+       
+   >2.2 通过文件来引入
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="schema001.xsd"
+ -->

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<book:books xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.example.org/schema002"
+      xmlns:book="http://www.example.org/schema002">
+     
+     <book:book id="1">
+        <book:title>JAVA</book:title>
+        <book:content>JAVA IS GOOG</book:content>
+        <book:author>ZHANG SAN</book:author>
+     </book:book>
+     
+     <book:book id="2">
+       <book:title>C#</book:title>
+       <book:content>C# IS BEAUTIFUL</book:content>
+       <book:authors>
+          <book:author>JIKE</book:author>
+          <book:author>MIKE</book:author>
+       </book:authors>
+     </book:book>
+     
+</book:books>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>插件开发</title>
+    <style type="text/css">
+        tr.one {
+		  color: #fff;
+		  background-color: #080;
+		}
+		tr.two {
+		  background-color: #ffa;
+		}
+    </style>
+
+    <script src="../../jquery.js"></script>
+    <script src="8.3.js"></script>
+  </head>
+  <body>
+  
+    <div id="container">
+    
+      <h1>Inventory</h1>
+      
+      <table id="inventory">
+        <thead>
+          <tr class="one">
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Spam</td>
+            <td>4</td>
+            <td>2.50</td>
+          </tr>
+          <tr>
+            <td>Egg</td>
+            <td>12</td>
+            <td>4.32</td>
+          </tr>
+          <tr>
+            <td>Gourmet Spam</td>
+            <td>14</td>
+            <td>7.89</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr id="sum" class="two">
+            <td>Total</td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr id="average">
+            <td>Average</td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tfoot>
+      </table>
+      
+    </div>
+  </body>
+</html>

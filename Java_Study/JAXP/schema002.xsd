@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+        targetNamespace="http://www.example.org/schema002"
+        xmlns:tns="http://www.example.org/schema002"
+        elementFormDefault="qualified">
+        
+        <element name="books">
+           <complexType>
+              <sequence maxOccurs="unbounded">
+                    <element name="book">
+                      <complexType>
+		               <sequence minOccurs="1" maxOccurs="unbounded">
+		                   <element name="title" type="string"/>
+		                   <element name="content" type="string"/>
+		                   <choice>
+		                       <element name="author" type="string"/>
+		                       <element name="authors">
+		                            <complexType>
+		                               <sequence maxOccurs="unbounded">
+		                                  <element name="author" type="string"></element>                                                                      
+		                               </sequence> 
+		                            </complexType>
+		                       </element>
+		                   </choice>
+		               </sequence>
+		               
+		               <!-- 定义book的属性 
+		                     use="required"  :   设置此属性必须存在
+		               -->
+		               <attribute name="id" type="int" use="required"/>
+		             </complexType>
+                    </element>           
+              </sequence>
+           </complexType>
+        </element>
+</schema>
+
+<!-- 
+  1.schema元素节点的创建
+               创建任何一个节点都是使用element
+            
+  2.复杂类型  <complexType>
+              不是简单类型，就必须是复杂类型
+              
+  3. 元素 
+    sequence  : 有顺序的
+    choice  ： 多个元素中间选择一个
+    all : 可以按照任何顺序出现，但是每个元素只能出现1次
+    
+  4.属性 :属性必须在sequence之后进行定义
+    maxOccurs="unbounded  ：  定义最大出现的次数
+
+ -->

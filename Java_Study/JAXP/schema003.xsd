@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+        targetNamespace="http://www.example.org/schema003" 
+        xmlns:tns="http://www.example.org/schema003" 
+        elementFormDefault="qualified">
+        
+        <!-- 使用自己定义的元素 -->
+        <!-- 
+        <element name="book" type="tns:bookType"></element>
+        <complexType name="bookType">
+           <sequence>
+               <element name="id"></element>
+           </sequence>
+        </complexType>
+         -->
+         
+         
+         
+        <!-- 
+          2.Salami Slice
+         -->
+         <!-- 
+         <element name="book" type="tns:bookType"></element>
+         <element name="id" type="int"></element>
+         <element name="title" type="string"></element>
+         <element name="content" type="string"></element>
+         <complexType name="bookType">
+            <sequence>
+               <element ref="tns:id"></element>
+               <element ref="tns:title"></element>
+               <element ref="tns:content"></element>
+            </sequence>
+         </complexType>
+          -->
+          
+          
+          <!-- 
+            3.Venetian Blind
+           -->
+         <element name="person" type="tns:personType"></element>
+         
+         <complexType name="personType">
+            <sequence>
+                <element name="name" type="string"></element>
+                <element name="age" type="tns:ageType"></element>
+                <element name="email" type="tns:emailType"></element>
+            </sequence>
+            <attribute name="sex" type="tns:sexType"></attribute>
+         </complexType>
+         <!-- simpleType只有一个作用，即约束 -->
+         <simpleType name="ageType">
+              <restriction base="int">
+                  <minInclusive value="1" /> <!-- 包含1 -->
+                  <maxExclusive value="150" /> <!-- 不包含150 -->
+              </restriction>
+         </simpleType>
+         
+         <simpleType name="sexType">
+            <restriction base="string">
+               <enumeration value="男" />
+               <enumeration value="女" />
+            </restriction>
+         </simpleType>
+         
+         
+         <simpleType name="emailType">
+            <restriction base="string">
+               <pattern value="(\w+\.*)*\w+@\w+\.[A-Za-z]{2,6}"></pattern>
+               <minLength value="6" />
+               <maxLength value="225"/>
+            </restriction>
+         </simpleType>
+</schema>
+
+<!-- 
+   1.编写schema的方式
+    >Russian Doll ： 大的套小的，一个个套下去
+       .优点  :  结构清晰，根元素只有一个
+       .缺点 :  元素无法重用 
+       
+    >Salami Slice : 所有元素都不进行嵌套
+       .优点  :  元素可以使用重用
+       .缺点 :  结构不清晰，不知道使用哪一个做根节点
+       
+    >Venetian Blind : 结合了上面两种方式
+        .最常用的方式
+        
+   2.最后将一个类组合成一个schema     
+ -->

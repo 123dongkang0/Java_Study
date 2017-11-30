@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Jquery方法(bind 和 unbind).html</title>
+	
+	<script src="jquery.js"></script>
+    <script type="text/javascript">
+	    $(function(){
+	       $('#btn').bind("click", function(){
+	                     $('#test').append("<p>绑定函数1</p>");
+	              }).bind("click", function(){
+	                     $('#test').append("<p>绑定函数2</p>");
+	              }).bind("click", function(){
+	                     $('#test').append("<p>绑定函数3</p>");
+	              });
+	    });
+	</script>
+	
+	<!-- 
+	    当点击按钮btn时，触发了三个点击事件，这里的append()方法，向div层中传递了三个段落内容。
+
+      append() 方法在被选元素的结尾（仍然在内部）追加指定内容。它与html()方法还是不同的，html()方法是改变整个元素中的内容，而不是向元素结尾追加内容。
+      
+      text()方法与html()方法类似，但区别在于html()方法中可以写入html的代码，而且可以被正确的解析，而text()只能当html代码为正常的字符串。
+
+           这里每次点击，都会执行一次事件，想div层末尾添加段落。下面的代码是取消事件效果的，可以通过删除事件，使点击效果失效：
+	 -->    
+	 
+	 <script type="text/javascript">
+	    $(function(){
+	       $('#delAll').click(function(){
+	              $('#btn').unbind("click");
+	       });
+	    });
+	</script>   
+	
+  </head>
+  
+  <body>
+    <button id="btn">Click Me</button>
+    <button id="delAll">Delete All</button>
+    <div id="test"></div>
+  </body>
+</html>

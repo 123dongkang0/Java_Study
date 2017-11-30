@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<person:person xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.example.org/schema003"
+      xmlns:person="http://www.example.org/schema003" 
+      sex="男">
+        <person:name>Join</person:name>
+        <person:age>22</person:age>
+        <person:email>dsss@qq.com</person:email>
+</person:person>
