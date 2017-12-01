@@ -3,7 +3,7 @@
 ### Iterable和Iterator的辨析
 本节主要针对Iterable和Iterator零个接口进行深入的学习。
 
-** 1）、Iterable接口**
+**1）、Iterable接口**
 Iterable接口 (java.lang.Iterable) 是Java集合的顶级接口之一。我们首先看下这这个接口在JDK中的定义：
 ```
 public interface Iterable<T> {
