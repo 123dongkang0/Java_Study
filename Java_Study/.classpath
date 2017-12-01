@@ -2,20 +2,15 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="Spring"/>
-	<classpathentry kind="src" path="Think"/>
+	<classpathentry kind="src" path="Think in Java"/>
 	<classpathentry kind="src" path="Struts2"/>
 	<classpathentry kind="src" path="JAVA-JAXP"/>
 	<classpathentry kind="src" path="JAVA-NET"/>
-	<classpathentry kind="src" path="Effictive"/>
+	<classpathentry kind="src" path="Effictive in Java"/>
 	<classpathentry kind="src" path="Oracle"/>
 	<classpathentry kind="src" path="JavaScript"/>
 	<classpathentry kind="src" path="Jquery"/>
 	<classpathentry kind="src" path="JAVA-设计模式"/>
-	<classpathentry kind="con" path="com.genuitec.runtime.library/com.genuitec.generic_6.0">
-		<attributes>
-			<attribute name="owner.project.facets" value="jst.web"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="com.genuitec.runtime.library/com.genuitec.jstl_1.2.1">
@@ -29,5 +24,6 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/log4j-1.2.17.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/slf4j-api-1.6.1.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="com.genuitec.runtime.library/com.genuitec.generic_5.0"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>
