@@ -1,11 +1,8 @@
 package com.dongk.effictive02;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.hibernate.validator.util.NewInstance;
 
 /**
  * 第1条：考虑用静态工厂方法代替构造器 
