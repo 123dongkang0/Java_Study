@@ -244,27 +244,15 @@ console.log(typeAndValue(str));      //String:Hello JavaScript;
 
 js中的typeof用来检查一个变量的数据类型，它返回的是一个字符串。不同类型变量经typeof运算符后返回的值如下：
 
-
-
 |        类型          |          结果           |
-
 |-----------------|-------------------|
-
 |   Undefined     |    "undefined"    |
-
 |   Null               |     "object "         |
-
 |   Boolean         |    "boolean"        |
-
 |   Number        |     "number"        |
-
 |   String            |     "string"           |
-
 |   函数对象        |      "function"      |
-
 |   任何其他对象  |     "object"          |
-
-
 
 下面再来说一说null和undefined的区别：
 
@@ -440,6 +428,7 @@ console.log(set);
 
 
 ###9.5.2 一个例子：枚举类型
+下面的例子包含一个单独函数enumeration()。但它不是一个构造函数，并没有定义一个叫做“enumeration”的类。相反，它是一个工厂方法，每次调用它都会创建并返回一个新的类，比如：
 
 
 
