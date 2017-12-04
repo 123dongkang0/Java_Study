@@ -163,3 +163,49 @@ function argumentsTest(){
 
 argumentsTest("HelloJavaScript", "2017-12-01");
 ```
+
+###Object.prototype.hasOwnProperty()
+hasOwnProperty() 方法会返回一个布尔值，指示对象自身属性中是否具有指定的属性
+
+**1）、语法**
+```
+obj.hasOwnProperty(prop)
+```
+**2）、参数**
+
+**`prop`**
+要检测的属性  字符串 名称或者 Symbol。
+
+**3）、返回值**
+
+用来判断某个对象是否含有指定的属性的 Boolean 。
+
+**4）、描述**
+
+所有继承了 Object 的对象都会继承到 hasOwnProperty 方法。这个方法可以用来检测一个对象是否含有特定的自身属性；和 in 运算符不同，该方法会忽略掉那些从原型链上继承到的属性。
+
+**5）、示例**
+  <font color="red">hasOwnProperty 方法判断属性是否存在</font>
+ ```
+var o = new Object();
+o.prop = "exists";
+
+function change(){
+	o.newProp = o.prop;
+	delete o.prop;
+}
+
+console.log(o.hasOwnProperty("prop"));        //返回true
+change();
+console.log(o.hasOwnProperty("prop"));       //返回false
+console.log(o.hasOwnProperty("newProp"));    //返回true
+```
+
+<font color="red">自身属性与继承属性</font>
+```
+o = new Object();
+o.prop = 'exists';
+console.log(o.hasOwnProperty('prop'));             // 返回 true
+console.log(o.hasOwnProperty('toString'));         // 返回 false
+console.log(o.hasOwnProperty('hasOwnProperty'));   // 返回 false
+```
