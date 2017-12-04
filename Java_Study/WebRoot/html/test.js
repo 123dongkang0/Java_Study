@@ -70,7 +70,7 @@ Card.Rank = enumeration({
 
 //定义用来描述牌面的文本
 Card.prototype.toString = function(){
-	return this.rank.toString() + this.suit.toString();
+	return "[" + this.rank.toString() +"-" +  this.suit.toString() + "]";
 }
 
 //比较扑克牌中两张牌的大小
@@ -108,9 +108,9 @@ Deck.prototype.shuffle = function(){
 	    len = deck.length;
 	for(var i = len - 1; i > 0; i--){
 		var r = Math.floor(Math.random() * (i + 1)),
-		    temp = deck[i],
-		    deck[i] = deck[r],
-		    deck[r] = temp;
+		    temp = deck[i];
+	    deck[i] = deck[r];
+		deck[r] = temp;
 	}
 	return this;
 };
@@ -125,3 +125,8 @@ Deck.prototype.deal = function(n){
 //创建一副新的扑克牌，洗牌并发牌
 var deck = (new Deck()).shuffle();
 var hand = deck.deal(13).sort(Card.orderBySuit);
+for(var card in hand){
+	console.log(hand[card].toString());
+}
+
+

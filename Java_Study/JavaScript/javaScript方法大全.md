@@ -1,5 +1,101 @@
 [TOC]
 
+###Arguments 对象
+arguments 是一个对应于传递给函数的参数的类数组对象。
+
+**1）、语法**
+
+```
+arguments
+```
+
+**2）、描述**
+
+arguments对象是所有（非箭头）函数中都可用的局部变量。你可以使用arguments对象在函数中引用函数的参数。此对象包含传递给函数的每个参数的条目，第一个条目的索引从0开始。例如，如果一个函数传递了三个参数，你可以以如下方式引用他们：
+
+```
+arguments[0]
+arguments[1]
+arguments[2]
+```
+**3）、示例**
+  ```
+function argumentsTest(){
+    for(var i=0; i<arguments.length; i++){
+        console.log(arguments[i]);
+    }
+}
+
+argumentsTest("HelloJavaScript", "2017-12-01");
+```
+
+
+
+###Array.prototype.splice()
+splice() 方法通过删除现有元素和/或添加新元素来更改一个数组的内容。
+
+** 1）、语法 **
+```
+array.splice(start)
+array.splice(start, deleteCount) 
+array.splice(start, deleteCount, item1, item2, ...)
+
+```
+** 2）、参数 **
+
+**`start`**
+指定修改的开始位置（从0计数）。如果超出了数组的长度，则从数组末尾开始添加内容；如果是负值，则表示从数组末位开始的第几位（从1计数）；若只使用start参数而不使用deleteCount、item，如：array.splice(start) ，表示删除[start，end]的元素。
+
+**`deleteCount 可选`**
+整数，表示要移除的数组元素的个数。如果 deleteCount 是 0，则不移除元素。这种情况下，至少应添加一个新元素。如果 deleteCount 大于start 之后的元素的总数，则从 start 后面的元素都将被删除（含第 start 位）。如果deleteCount被省略，则其相当于(arr.length - start)。
+
+**`item1, item2, ... 可选`**
+要添加进数组的元素,从start 位置开始。如果不指定，则 splice() 将只删除数组元素。
+
+** 3）、返回值 **
+由被删除的元素组成的一个数组。如果只删除了一个元素，则返回只包含一个元素的数组。如果没有删除元素，则返回空数组。
+
+
+** 4）、示例 **
+```
+var myFish = ["angel","clown","mandarin","surgeon"];
+
+/**
+ * 从第2位开始删除0个元素，插入 "drum"
+ * 返回值："[]" - 表示没有被删除的元素
+ */
+var removed = myFish.splice(2, 0, "drum");
+//["angel", "clown", "drum", "mandarin", "surgeon"]
+console.log(myFish);  
+
+
+/**
+ * 从第3位开始删除1个元素
+ * 返回值："[mandarin]" - 表示被删除的元素
+ */
+removed = myFish.splice(3, 1);
+//["angel", "clown", "drum", "surgeon"]
+console.log(myFish);  
+
+/**
+ * 从第 2 位开始删除 1 个元素，然后插入 "trumpet"
+ * 返回值："[drum]" - 表示被删除的元素
+ */
+removed = myFish.splice(2, 1,"trumpet");
+//["angel", "clown", "trumpet", "surgeon"]
+console.log(myFish); 
+
+/**
+ * 从第1位开始删除其后所有即[1，end]的元素
+ * 返回值："["clown", "trumpet", "surgeon"]" - 表示被删除的元素
+ */
+removed = myFish.splice(1);
+//["angel"]
+console.log(myFish); 
+```
+
+
+
 ###Function.prototype.call()
 
 
@@ -133,35 +229,6 @@ function Student(name,age,grade){
 
 var stu = new Student("张三",22,"一年级")
 console.log("name: " + stu.name + ",age: " + stu.age + ",grade: " + stu.grade);
-```
-
-###Arguments 对象
-arguments 是一个对应于传递给函数的参数的类数组对象。
-
-**1）、语法**
-
-```
-arguments
-```
-
-**2）、描述**
-
-arguments对象是所有（非箭头）函数中都可用的局部变量。你可以使用arguments对象在函数中引用函数的参数。此对象包含传递给函数的每个参数的条目，第一个条目的索引从0开始。例如，如果一个函数传递了三个参数，你可以以如下方式引用他们：
-
-```
-arguments[0]
-arguments[1]
-arguments[2]
-```
-**3）、示例**
-  ```
-function argumentsTest(){
-    for(var i=0; i<arguments.length; i++){
-        console.log(arguments[i]);
-    }
-}
-
-argumentsTest("HelloJavaScript", "2017-12-01");
 ```
 
 ###Object.prototype.hasOwnProperty()
