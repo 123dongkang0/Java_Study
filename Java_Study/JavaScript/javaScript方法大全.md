@@ -31,6 +31,54 @@ argumentsTest("HelloJavaScript", "2017-12-01");
 
 
 
+### Array.prototype.sort()
+sort() 方法在适当的位置对数组的元素进行排序，并返回数组。 sort 排序不一定是稳定的。默认排序顺序是根据字符串Unicode码点
+
+**  1）、语法  **
+```
+arr.sort() 
+arr.sort(compareFunction)
+```
+**  2）、参数  **
+**`compareFunction`**
+可选。用来指定按某种顺序进行排列的函数。如果省略，元素按照转换为的字符串的诸个字符的Unicode位点进行排序。
+
+** 3）、返回值 **
+返回排序后的数组。原数组已经被排序后的数组代替。
+
+** 4）、示例 **
+
+<font color="red">按照大小排序</font>
+
+```
+var numbers = [4, 2, 5, 1, 3];
+numbers.sort(function(a, b){
+	           return a - b;
+             });
+console.log(numbers);  //[1, 2, 3, 4, 5]
+```
+
+<font color="red">对象可以按照某个属性排序</font>
+
+```
+var items=[
+           {name: 'Edward', value: 21},
+           {name: 'Sharpe', value: 37},
+           {name: 'And', value: 45},
+           {name: 'The', value: -12},
+           {name: 'Magnetic', value: 90},
+           {name: 'Zeros', value: 37},
+          ];
+items.sort(function(a,b){
+	if(a.value > b.value){return 1;}
+	if(a.value < b.value){return -1;}
+	return 0;
+});
+
+console.log(items);
+```
+
+
 ### Array.prototype.splice()
 splice() 方法通过删除现有元素和/或添加新元素来更改一个数组的内容。
 
