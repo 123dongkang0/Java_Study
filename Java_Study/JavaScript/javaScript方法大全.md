@@ -1,6 +1,6 @@
 [TOC]
 
-###Arguments 对象
+### Arguments 对象
 arguments 是一个对应于传递给函数的参数的类数组对象。
 
 **1）、语法**
@@ -31,7 +31,7 @@ argumentsTest("HelloJavaScript", "2017-12-01");
 
 
 
-###Array.prototype.splice()
+### Array.prototype.splice()
 splice() 方法通过删除现有元素和/或添加新元素来更改一个数组的内容。
 
 ** 1）、语法 **
@@ -96,7 +96,7 @@ console.log(myFish);
 
 
 
-###Function.prototype.call()
+### Function.prototype.call()
 
 
 call() 方法调用一个函数, 其具有一个指定的this值和分别地提供的参数(参数的列表)。
@@ -190,7 +190,7 @@ greet.call(i); // Douglas Crockford Is An Awesome Javascript Developer
 ```
 
 
-###Function.prototype.apply()
+### Function.prototype.apply()
 
 
 apply() 方法调用一个函数, 其具有一个指定的this值，以及作为一个数组（或类似数组的对象）提供的参数。
@@ -231,7 +231,7 @@ var stu = new Student("张三",22,"一年级")
 console.log("name: " + stu.name + ",age: " + stu.age + ",grade: " + stu.grade);
 ```
 
-###Object.prototype.hasOwnProperty()
+### Object.prototype.hasOwnProperty()
 hasOwnProperty() 方法会返回一个布尔值，指示对象自身属性中是否具有指定的属性
 
 **1）、语法**
