@@ -10,8 +10,4 @@ import java.util.Comparator;
  *    1.2 基本类型通常比装箱基本类型更加节省时间和空间。
  */
 public class Example049 {
-    public static void main(String args[]){
-    	
-    	
-    }
 }
