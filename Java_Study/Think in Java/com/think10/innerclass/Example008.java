@@ -1,19 +1,23 @@
 package com.think10.innerclass;
 
+import org.junit.Test;
+
 /**
  * 10.8 为什么需要内部类。
  *  
  */
 public class Example008 {
-   public static void main(String args[]){
+   
+   @Test
+   public void testMultiInterfaces(){
 	   X x = new X();
 	   Y y = new Y();
 	   
 	   MultiInterfaces.takesA(x);
-	   MultiInterfaces.takesA(x);
+	   MultiInterfaces.takesB(x);
 	   
 	   MultiInterfaces.takesA(y);
-	   MultiInterfaces.takesA(y);
+	   MultiInterfaces.takesB(y.makeB());
    }
 }
 
@@ -29,7 +33,7 @@ class X implements A, B{}
 
 //使用内部类
 class Y implements A{
-	private B makeB(){
+	 B makeB(){
 		return new B(){};
 	}
 }

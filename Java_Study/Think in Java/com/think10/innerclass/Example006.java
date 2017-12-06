@@ -1,28 +1,41 @@
 package com.think10.innerclass;
 
+import org.junit.Test;
+
 
 /**
  *10.6匿名内部类 
  */
 public class Example006 {
-    public static void main(String args[]){
+    
+    @Test
+    public void testParcel7(){
     	Parcel7 p = new Parcel7();
     	Contents c = p.contents();
     	System.out.println("contents : " + c.value());
-    	
+    }
+    
+    @Test
+    public void testParcle8(){
     	Parcle8 p8 = new Parcle8();
     	Wrapping w = p8.wrapping(10);
     	System.out.println(w.value());
-    	
+    }
+    
+    @Test
+    public void testAnonymousConstructor(){
     	AnonymousConstructor.getBase(10);
-    	
+    }
+    
+    @Test
+    public void testFactories(){
     	Factories.serviceConsumer(Implmentation1.factory);
     	Factories.serviceConsumer(Implmentation2.factory);
     }
 } 
 
 /**
- * 此语法指的是 : "创建一个继承自Contents的匿名类的对象"。
+ * 1）、此语法指的是 : "创建一个继承自Contents的匿名类的对象"。
  *       此匿名类采用默认的构造器来生成Contents
  */
 class Parcel7 {
@@ -51,18 +64,18 @@ class Parcel7b{
 	}
 }
 
+/**
+ * 2）、使用有参数构造器：
+ * 
+ * wrapping 只是一个具有具体实现的普通类，
+ * 但它还是被其导出类当做公共 "接口"  来使用。
+ */
 class Wrapping{
 	private int i;
 	public Wrapping(int x){ i = x;}
 	public int value(){return i;}
 }
 
-/**
- * 使用有参数构造器：
- * 
- * wrapping 只是一个具有具体实现的普通类，
- * 但它还是被其导出类当做公共 "接口"  来使用。
- */
 class Parcle8{
 	public Wrapping wrapping(int x){
 		return new Wrapping(x){
@@ -75,7 +88,7 @@ class Parcle8{
 
 
 /**
- * 定义一个匿名内部类，希望使用一个在其外部定义的对象，那么 编译器会要求其参数的引用是final.
+ * 3）、定义一个匿名内部类，希望使用一个在其外部定义的对象，那么 编译器会要求其参数的引用是final.
  */
  class Parcel9{
 	  public Destination destomation(final String dest){
@@ -89,6 +102,7 @@ class Parcle8{
  }
  
  /**
+  * 4）、
   * Parcel9中，只是简单的给一个字段赋值， 
   * 如果想做类似构造器的行为，该如何操作了？
   * 匿名类中不可能有构造器，因为它根本就没有名字；但是可以通过实例初始化达到这样的效果。
@@ -119,8 +133,8 @@ class AnonymousConstructor{
  }
 
 /**
- *匿名内部类示例：
- *  再访工厂方法 
+ * 5）、匿名内部类示例：
+ *   再访工厂方法 
  */
  interface Service{
 	 void method1();
@@ -170,3 +184,4 @@ class AnonymousConstructor{
 		 s.method2();
 	 }
  }
+ 
