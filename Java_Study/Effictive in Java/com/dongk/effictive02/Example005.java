@@ -4,15 +4,26 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
+import org.junit.Test;
+
 /**
  * 第5条：避免创建不必要的对象 
  */
 public class Example005 {
-   public static void main(String args[]){
-	   //String s = new String("stringgette")//DON'T DO THIS
+
+	@Test
+   public void testStr(){
+	 //String s = new String("stringgette")//DON'T DO THIS
+	   /**
+	    *对于在同一台虚拟机中运行的代码，只要它们包含相同的字符串字面常量，该对象就会被重用 
+	    */
 	   String s = "stringgette";
-	   
-	   Long sum = 0L;
+   }
+   
+   @Test
+   public void testLong(){
+	   //Long sum = 0L;   //使用Long 频繁进行拆箱、装箱操作，性能低下；
+	   long sum = 0L;
 	   for(long i=0; i<Integer.MAX_VALUE; i++){
 		   sum += i;
 	   }
@@ -21,7 +32,9 @@ public class Example005 {
 }
 
 /**
- * 在这里举一个反例：
+ * 1）、在这里举一个反例：
+ *   
+ *     判断一个人是否出生在 1946-1945 年之间
  *     
  */
 class Person{
@@ -42,7 +55,7 @@ class Person{
 	   gmtCal.set(1965,Calendar.JANUARY,1,0,0,0);
 	   Date boomEnd = gmtCal.getTime();
 	   return birthDate.compareTo(boomStart)>=0 &&
-			   birthDate.compareTo(boomStart)<0; 
+			  birthDate.compareTo(boomStart)<0; 
 	}
 }
 
