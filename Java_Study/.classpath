@@ -2,15 +2,10 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="Spring"/>
-	<classpathentry kind="src" path="Think in Java"/>
 	<classpathentry kind="src" path="Struts2"/>
-	<classpathentry kind="src" path="JAVA-JAXP"/>
-	<classpathentry kind="src" path="JAVA-NET"/>
-	<classpathentry kind="src" path="Effictive in Java"/>
 	<classpathentry kind="src" path="Oracle"/>
-	<classpathentry kind="src" path="JavaScript"/>
-	<classpathentry kind="src" path="Jquery"/>
 	<classpathentry kind="src" path="JAVA-设计模式"/>
+	<classpathentry kind="src" path="JAVA-基础知识"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="com.genuitec.runtime.library/com.genuitec.jstl_1.2.1">
