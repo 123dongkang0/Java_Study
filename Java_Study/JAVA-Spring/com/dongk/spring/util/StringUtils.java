@@ -10,6 +10,10 @@ public class StringUtils {
 	private static final String WINDOWS_FOLDER_SEPARATOR = "\\";
 	
 	private static final String FOLDER_SEPARATOR = "/";
+	
+	private static final String TOP_PATH = "..";
+	
+	private static final String CURRENT_PATH = ".";
    
 	/**
 	 * 替换字符串中出现的所有的子字符串
@@ -76,7 +80,25 @@ public class StringUtils {
 		List<String> pathElements = new LinkedList<String>();
 		int tops = 0;
 		
-	//	for(int i=pathArray)
+		for(int i=pathArray.length - 1; i>=0; i--){
+			String element = pathArray[i];
+			if(CURRENT_PATH.equals(element)){
+				//指向当前目录 - 删除它
+			}else if(TOP_PATH.equals(element)){
+				//注册顶部路径
+				tops++;
+			}else{
+				if(tops > 0){
+					tops--;
+				}else{
+					pathElements.add(0, element);
+				}
+			}
+		}
+		
+		for(int i=0; i<tops; i++){
+			pathElements.add(0, TOP_PATH);
+		}
 		
 		return null;
 		
