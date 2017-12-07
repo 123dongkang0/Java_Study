@@ -3,11 +3,11 @@
     <wb-module deploy-name="Java_Study">
         <wb-resource deploy-path="/" source-path="/WebRoot" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/Spring"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/Struts2"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/Oracle"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/JAVA-设计模式"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/JAVA-基础知识"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/JAVA-Spring"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/JAVA-Struts2"/>
         <property name="java-output-path" value="/Java_Study/WebRoot/WEB-INF/classes"/>
         <property name="context-root" value="Java_Study"/>
     </wb-module>
