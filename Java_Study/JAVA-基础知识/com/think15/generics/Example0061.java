@@ -3,6 +3,8 @@ package com.think15.generics;
 import java.util.ArrayList;
 import java.util.Random;
 
+import com.think.pub.Generator;
+
 /**
  *在这里我们来使用泛型构建一个商店模型(包含走廊、货架、商品) 
  */

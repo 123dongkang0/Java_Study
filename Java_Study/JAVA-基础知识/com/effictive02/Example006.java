@@ -14,6 +14,21 @@ public class Example006 {
 }
 
 //can you spot the "memory leak"?
+/**
+ * 1）、这段程序有一个 "内存泄漏" 风险。
+ * 
+ *  如果一个栈先增长，然后再收缩，那么，从栈中弹出来的对象不会当做垃圾被回收。因为elements数组没有
+ *  解除 "活动部分" 之外引用。
+ *  
+ *  修复问题的方法很简单，只是需要清空这些引用即可。
+ *  public Object pop(){
+ *		if(size == 0)
+ *			throw new EmptyStackException();
+ *      Object result = elements[--size];
+ *      elements[size] == null;
+ *		return result;
+ *	}
+ */
 class Stack{
 	private Object[] elements;
 	private int size = 0;

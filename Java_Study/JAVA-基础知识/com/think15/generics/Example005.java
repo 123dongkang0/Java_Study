@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Random;
 
+import com.think.pub.Generator;
+
 /**
  *15.5 : 匿名内部类
  *  泛型还可以使用在内部类以及匿名内部类中。 

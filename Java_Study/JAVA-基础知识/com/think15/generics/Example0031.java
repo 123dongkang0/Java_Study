@@ -2,6 +2,8 @@ package com.think15.generics;
 
 import java.util.Iterator;
 
+import com.think.pub.Generator;
+
 /**
  *15.3 : 使用Generator<T> 接口的另外一个实现，
  *    它负责生成Fibonacci数列

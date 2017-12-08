@@ -3,6 +3,8 @@ package com.think15.generics;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import com.think.pub.Generator;
+
 /**
  *15.4.3 用于Generator的泛型方法 
  *   利用生成器，我们可以很方便的填充一个Collection,而泛型化这种操作是具有实际意义的：

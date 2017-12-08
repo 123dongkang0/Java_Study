@@ -3,6 +3,8 @@ package com.think15.generics;
 import java.util.Iterator;
 import java.util.Random;
 
+import com.think.pub.Generator;
+
 /**
  * 15.3：泛型接口。例如生成器(Generator)
  */
@@ -16,10 +18,6 @@ public class Example003 {
 		   System.out.println(c);
 	   }
    }
-}
-
-interface Generator<T>{
-	T next();
 }
 
 class Coffee{

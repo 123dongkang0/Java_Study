@@ -14,7 +14,9 @@ import java.util.Set;
  */
 public class Example0041 {
    public static void main(String args[]){
-       Map<String,List<String>> sls = New.map();
+	   //利用类型推断，可以避免下面这种冗余的做法。
+	   Map<String,List<String>> sls = New.<String,List<String>>map();
+      // Map<String,List<String>> sls = New.map();
        List<String> ls = New.list();
        
    }

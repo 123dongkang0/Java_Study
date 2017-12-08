@@ -1,5 +1,7 @@
 package com.think15.generics;
 
+import com.think.pub.Generator;
+
 /**
  *15.4.4 编写一个通用的Generator 
  */
