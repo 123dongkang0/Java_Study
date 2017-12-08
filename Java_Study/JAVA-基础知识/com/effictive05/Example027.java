@@ -17,6 +17,7 @@ public class Example027 {
 		Set<String> Stooges = new HashSet<String>(Arrays.asList("Larry","Moe","Curly"));
 		Set<String> aflCio = union(guys, Stooges);
 		System.out.println(aflCio);
+		System.out.println("SSS");
 		
 	}
 	
