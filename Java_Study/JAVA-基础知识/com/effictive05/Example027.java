@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -66,11 +67,38 @@ public class Example027 {
 	
 	@Test
 	public void testUnaryFunction(){
-      
+       String[] strings = {"jute","hemp","nylon"};
+       UnaryFunction<String> sameString = identityFunction();
+       for(String s : strings)
+    	   System.out.println(sameString.apply(s));
+       
+       Number[] numbers = {1,2.0,3L};
+       UnaryFunction<Number> sameNumber = identityFunction();
+       for(Number n : numbers)
+    	   System.out.println(sameNumber.apply(n));
 	}
-
+	
+	/**
+	 * 4）、限定参数类型
+	 */
+	public static <T extends Comparable<T>> T max(List<T> list){
+		Iterator<T> i = list.iterator();
+		T result = i.next();
+		while(i.hasNext()){
+			T t = i.next();
+			if(t.compareTo(result) > 0)
+				result = t;
+		}
+		return result;
+	}
+	
 }
 
 interface UnaryFunction<T>{
 	T apply(T arg);
+}
+
+//需要注意的是，所有的类型都只能和自身的类型做比较的
+interface Comparable<T>{
+	int compareTo(T o);
 }
