@@ -6,6 +6,7 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
          
          <!-- SpringMvc 4.0  -->
+         <!--  
         <context-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/root-context.xml</param-value>
@@ -26,6 +27,22 @@
 		<listener>
 			<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 		</listener>
+		
+		 <init-param>  
+        <param-name>config</param-name>  
+        <param-value>../../resources/struts.xml</param-value>  
+      </init-param>  
+      -->
+     
+     <!-- struts2.3 -->
+     <filter>  
+        <filter-name>struts2</filter-name>  
+        <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>  
+     </filter>
+     <filter-mapping>  
+        <filter-name>struts2</filter-name>  
+        <url-pattern>/*</url-pattern>  
+     </filter-mapping>
      
   
 </web-app>
