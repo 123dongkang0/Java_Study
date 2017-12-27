@@ -7,6 +7,9 @@ import java.util.Random;
 
 /**
  *17.9 散列与散列码
+ *
+ *  HashMap使用equals判断当前的键是否和表中存在的键相同
+ * 
  *  Object.equals()只是对角对象的地址。
  */
 public class Example009 {

@@ -43,6 +43,9 @@ class SlowMap<K,V> extends AbstractMap<K, V>{
     	}
     }
     
+    /**
+     * 猜出创建了一个副本，而不是提供视图。这和标准的HashMap实现是有区别的。因为这样无法修改原来的Map 
+     */
     public Set<Map.Entry<K, V>> entrySet(){
     	 Set<Map.Entry<K, V>>  set = new HashSet<Map.Entry<K,V>>();
     	 Iterator<K> ki = keys.iterator();

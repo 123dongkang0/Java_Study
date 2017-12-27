@@ -9,6 +9,8 @@ import java.util.Set;
 
 /**
  * 17.9.2 为速度而散列 
+ *  
+ *   散列的价值在于速度：散列使得查询得以快速进行
  */
 public class Example0092 {
   public static void main(String args[]){
