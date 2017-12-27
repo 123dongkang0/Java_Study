@@ -6,6 +6,7 @@
 	<classpathentry kind="src" path="ORACLE"/>
 	<classpathentry kind="src" path="JAVA-设计模式"/>
 	<classpathentry kind="src" path="JAVA-基础知识"/>
+	<classpathentry kind="src" path="JAVA-SpringMvc"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="com.genuitec.runtime.library/com.genuitec.jstl_1.2.1">

@@ -8,6 +8,7 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/JAVA-Spring"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/JAVA-Struts2"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/ORACLE"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/JAVA-SpringMvc"/>
         <property name="java-output-path" value="/Java_Study/WebRoot/WEB-INF/classes"/>
         <property name="context-root" value="Java_Study"/>
     </wb-module>
