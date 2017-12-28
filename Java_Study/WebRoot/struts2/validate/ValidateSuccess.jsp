@@ -1,5 +1,4 @@
 <%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix ="s" uri="/struts-tags"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -10,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>Struts2 Showcase - Validation - Basic</title>
+    <title>validation success</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -26,26 +25,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
 
 	<div>
-		<h1>Basic validation Example</h1>
-	</div>
-	
-	<div>
-		<div>
-			<div>
-	
-				<p>
-					<b>What is your favorite color?</b>
-	
-				<p/>
-	
-				<s:form method="post">
-					<s:textfield label="Name" name="name"/>
-					<s:textfield label="Age" name="age"/>
-					<s:textfield label="Favorite color" name="answer"/>
-					<s:submit />
-				</s:form>
-			</div>
-		</div>
+		<h1>validation success</h1>
 	</div>
 	
   </body>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+  
+<!DOCTYPE struts PUBLIC  
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"  
+    "http://struts.apache.org/dtds/struts-2.3.dtd">  
+  
+<struts>  
+  
+    <package name="validate" extends="struts-default" namespace="/validate">  
+        <action 
+           name="/basicAction_*" 
+           class="com.struts2.validate.ValidateBasicAction" 
+           method="{1}" >
+		  <result name="success">/struts2/validate/ValidateSuccess.jsp</result>
+		  <result name="error">/struts2/validate/ValidateError.jsp</result>
+		  <result name="input">/struts2/validate/ValidateBasic_input.jsp</result>
+		</action>
+    </package>  
+    
+</struts>
