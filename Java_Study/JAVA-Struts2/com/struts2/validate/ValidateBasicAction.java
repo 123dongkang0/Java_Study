@@ -8,7 +8,14 @@ public class ValidateBasicAction extends ActionSupport {
 	String name;
 	int age;
 	String answer;
-
+    
+	/**
+	 *  http://localhost:8080/Java_Study/validate/basicAction_inputBasicValidatePage.action
+	 */
+	public String inputBasicValidatePage(){
+	   return "input";	
+	}
+	
 	public String getName() {
 		return name;
 	}

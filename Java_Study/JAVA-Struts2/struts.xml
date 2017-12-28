@@ -8,12 +8,7 @@
   
     <constant name="struts.i18n.reload" value="false" />  
     <constant name="struts.devMode" value="false" />  
-    
     <include file="struts-default.xml" />  
     
-    <package name="default" extends="struts-default" namespace="/">  
-  
-  
-    </package>  
-  
+    <include file="struts_validate.xml" />
 </struts>
