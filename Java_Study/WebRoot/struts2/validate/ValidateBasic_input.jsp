@@ -38,7 +38,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 				<p/>
 	
-				<s:form method="post">
+				<s:form method="post" action="validate/basicAction_inputBasicValidatePage.action">
 					<s:textfield label="Name" name="name"/>
 					<s:textfield label="Age" name="age"/>
 					<s:textfield label="Favorite color" name="answer"/>

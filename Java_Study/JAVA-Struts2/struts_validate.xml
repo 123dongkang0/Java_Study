@@ -13,7 +13,7 @@
            method="{1}" >
 		  <result name="success">/struts2/validate/ValidateSuccess.jsp</result>
 		  <result name="error">/struts2/validate/ValidateError.jsp</result>
-		  <result name="input">/struts2/validate/BasicValidate.jsp</result>
+		  <result name="input">/struts2/validate/ValidateBasic_input.jsp</result>
 		</action>
     </package>  
     

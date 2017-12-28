@@ -12,8 +12,12 @@ public class ValidateBasicAction extends ActionSupport {
 	/**
 	 *  http://localhost:8080/Java_Study/validate/basicAction_inputBasicValidatePage.action
 	 */
+	/**
+	 * 验证不通过，自动返回 "input" 
+	 */
 	public String inputBasicValidatePage(){
-	   return "input";	
+		System.out.println("name : " + name);
+	   return "success";	
 	}
 	
 	public String getName() {
