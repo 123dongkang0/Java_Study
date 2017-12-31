@@ -13,6 +13,7 @@
            method="{1}" >
 		  <result name="success">/struts2/validate/ValidateSuccess.jsp</result>
 		  <result name="error">/struts2/validate/ValidateError.jsp</result>
+		  <!-- 如果验证失败，返回input -->
 		  <result name="input">/struts2/validate/ValidateBasic_input.jsp</result>
 		</action>
     </package>  
