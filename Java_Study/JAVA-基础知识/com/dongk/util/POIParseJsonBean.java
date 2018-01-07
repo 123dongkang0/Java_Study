@@ -10,26 +10,50 @@ package com.dongk.util;
 public class POIParseJsonBean {
      
 	private String keyName;           //json串key值
-	private String validateType;      //校验类型
+	private POIParseJsonValidate validateType;      //校验类型
+	private String[] validateCondition;             //校验参数
+	private boolean isNull;  //是否可以为空
 	private String validateMessage;   //当不符合校验类型的时候，提示此字符串
 	
 	public POIParseJsonBean(){
 		
 	}
+	
+    public POIParseJsonBean(String keyName,
+    		                POIParseJsonValidate validateType,
+    		                String[] validateCondition,
+    		                boolean isNull){
+    	this.keyName = keyName;
+    	this.validateType = validateType;
+    	this.validateCondition = validateCondition;
+    	this.isNull = isNull;
+	}
+    
+    public POIParseJsonBean(String keyName,
+	                        POIParseJsonValidate validateType,
+				            String[] validateCondition,
+				            boolean isNull,
+				            String validateMessage){
+		this.keyName = keyName;
+		this.validateType = validateType;
+		this.validateCondition = validateCondition;
+		this.isNull = isNull;
+		this.validateMessage = validateMessage;
+	}
 
 	public String getKeyName() {
 		return keyName;
 	}
-
+	
 	public void setKeyName(String keyName) {
 		this.keyName = keyName;
 	}
 
-	public String getValidateType() {
+	public POIParseJsonValidate getValidateType() {
 		return validateType;
 	}
 
-	public void setValidateType(String validateType) {
+	public void setValidateType(POIParseJsonValidate validateType) {
 		this.validateType = validateType;
 	}
 
@@ -39,6 +63,22 @@ public class POIParseJsonBean {
 
 	public void setValidateMessage(String validateMessage) {
 		this.validateMessage = validateMessage;
+	}
+
+	public String[] getValidateCondition() {
+		return validateCondition;
+	}
+
+	public void setValidateCondition(String[] validateCondition) {
+		this.validateCondition = validateCondition;
+	}
+
+	public boolean isNull() {
+		return isNull;
+	}
+
+	public void setNull(boolean isNull) {
+		this.isNull = isNull;
 	}
 	
 	
