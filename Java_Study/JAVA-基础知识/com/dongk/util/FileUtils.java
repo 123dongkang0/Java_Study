@@ -80,8 +80,8 @@ public class FileUtils {
 	 * @return
 	 */
 	public static String copyFile(String oldPath, String dir, String fileName,boolean addYMD) {
-		InputStream inStream =  null;
-		FileOutputStream fs = null;
+		BufferedInputStream inStream =  null;
+	    BufferedOutputStream fs = null;
 		try {
 			String newFileDir = "";
 			if(addYMD){
@@ -93,8 +93,8 @@ public class FileUtils {
 			int byteread = 0;
 			File oldfile = new File(oldPath);
 			if (oldfile.exists()) { // 文件存在时
-				 inStream = new FileInputStream(oldPath); // 读入原文件
-				 fs = new FileOutputStream(newFileDir);
+				 inStream = new BufferedInputStream(new FileInputStream(oldPath)); // 读入原文件
+				 fs = new BufferedOutputStream(new FileOutputStream(newFileDir));
 				byte[] buffer = new byte[1444];
 				while ((byteread = inStream.read(buffer)) != -1) {
 					fs.write(buffer, 0, byteread);
@@ -125,7 +125,7 @@ public class FileUtils {
 		}
 		return "";
 	}
-	
+
 	/**
 	 * Function : 创建文件夹 ;       
 	 * @param sFileDir : 文件夹路径
