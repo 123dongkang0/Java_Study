@@ -34,9 +34,20 @@ public class FourReference {
 	 * 
 	 * 
 	 */
+	private SoftReference<byte[]> dataRef = new SoftReference<byte[]>(new byte[0]);
+	
+	private byte[] readFile(){
+	    return new byte[1024*1024];  //省略了读取文件的操作	
+	}
+	
 	@Test
 	public void testSoftReference(){
-		SoftReference<byte[]> dataRef = new SoftReference<byte[]>(referent)
+	    byte[] dataArray = dataRef.get();
+	    if(dataArray == null || dataArray.length == 0){
+	    	dataArray = readFile();
+	    	dataRef = new SoftReference<byte[]>(dataArray);
+	    }
+	    System.out.println(dataArray);
 	}
 	
    
