@@ -38,7 +38,7 @@ public class POIParseUtil {
 	private static final int START_ROW = 1;    //开始的行数
 	
 	
-	public static String getJsonStr(String filaName, Map<Integer,POIParseJsonBean> cellProperties, int dateFormat) throws Exception {
+	public static String getJsonStr(String filaName, POIParseJsonBean[] cellProperties, int dateFormat) throws Exception {
 		
 		JSONObject   resultJson = new JSONObject();
 		boolean isValidate = true;                //校验是否通过
@@ -54,10 +54,10 @@ public class POIParseUtil {
                continue;
             }else{
             	JSONObject objectJson = new JSONObject();
-                 for (int cn = 0; cn < cellProperties.size(); cn++) {
+                 for (int cn = 0; cn < cellProperties.length; cn++) {
                      Cell c = r.getCell(cn, Row.RETURN_BLANK_AS_NULL);
                      
-                     POIParseJsonBean bean = cellProperties.get(cn);
+                     POIParseJsonBean bean = cellProperties[cn];
                      String cellStr = "";
                     
                      if (c == null) {
@@ -127,12 +127,13 @@ public class POIParseUtil {
     
 	public static void main(String args[]){
 		try {
-			Map<Integer,POIParseJsonBean> cellProperties = new HashMap<Integer, POIParseJsonBean>(); 
-			cellProperties.put(0, new POIParseJsonBean("name",POIParseJsonValidate.NO_VALIDATE,null,false));
-			cellProperties.put(1, new POIParseJsonBean("age",POIParseJsonValidate.NUMBER_VALIDATE,new String[]{"2","0"},false));
-			cellProperties.put(2, new POIParseJsonBean("address",POIParseJsonValidate.NO_VALIDATE,null,true));
-			cellProperties.put(3, new POIParseJsonBean("birthday",POIParseJsonValidate.DATE_VALIDATE,new String[]{"2"},false));
-			cellProperties.put(4, new POIParseJsonBean("isHome",POIParseJsonValidate.NO_VALIDATE,null,false));
+			POIParseJsonBean[] cellProperties = {
+			               new POIParseJsonBean("name",POIParseJsonValidate.NO_VALIDATE,null,false),
+			               new POIParseJsonBean("age",POIParseJsonValidate.NUMBER_VALIDATE,new String[]{"2","0"},false),
+			               new POIParseJsonBean("address",POIParseJsonValidate.NO_VALIDATE,null,true),
+			               new POIParseJsonBean("birthday",POIParseJsonValidate.DATE_VALIDATE,new String[]{"2"},false),
+			               new POIParseJsonBean("isHome",POIParseJsonValidate.NO_VALIDATE,null,false)
+			                   };
 			System.out.println(getJsonStr("D:\\POIParseTest.xlsx",cellProperties,2));
 		} catch (Exception e) {
 			e.printStackTrace();
