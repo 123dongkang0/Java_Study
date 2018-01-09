@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>jquery-tool.html</title>
+	
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta name="content-type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="../../scripts/jquery-ui-1.10.4.custom/development-bundle/themes/base/jquery.ui.all.css">
+    
+    <script type="text/javascript" src="../../scripts/jquery-1.8.3.js" ></script>
+    <script type="text/javascript" src="../../scripts/jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.min.js" ></script>
+    <script type="text/javascript" src="jquery-tool.js" ></script>
+    
+  </head>
+  
+  <body>
+  
+    <!-- 1.jqueryTool  fillelementstext 方法测试 -->
+     <h1>1、数据回填</h1>
+    <form action="" name="form1">
+       <input type="radio" name="love" id="radio" value="A"/> 篮球
+       <input type="radio" name="love" id="radio" value="B"/> 足球
+       <input type="radio" name="love" id="radio" value="C"/> 钢琴
+       <select  name="age" > 
+          <option value="15"> 15</option>
+          <option value="16"> 16</option>
+          <option value="17"> 17</option>
+          <option value="18"> 18</option>
+       </select>
+       <input type="text" name="name" />
+    </form>
+    <script type="text/javascript">
+       var data = {
+    		       "name":"董康",
+    		       "age":"17",
+    		       "love":"B"
+                 };
+       var map = {
+    		       "name" : "name",
+    		       "age" : "age",
+    		       "love" : "love",
+                };
+        $.jqueryTool.fillelementstext({
+    	                             "data" : data,
+    	                             "map" : map
+                                    });
+    </script>
+    
+    <!-- 2.jqueryTool  fileupload 方法测试 -->
+    <br/>
+    <h1>2、文件上传</h1>
+    <input type="file" id="file1" /> <button id="button1"> 上传 </button>
+    <script type="text/javascript" src="jquery-tool-fileupload-divl.js"></script>
+    <script>
+		$(function() {
+			$("#button1").click(function(){
+				var validate = $.jqueryTool.fileuploadvalidate({
+                    "elementId" : "file1",
+                    "fileType" : /(.jpg|.JPG|.gif|.GIF)$/
+                   });
+				if("1" == validate){
+					$.jqueryTool.fileupload({
+	                     "elementId" : file1,
+	                     "url" : "www.baidu.com"
+	                    });
+				}else{
+					alert(validate);
+				}
+		    });
+		});
+			
+		
+	</script>
+  
+</html>
