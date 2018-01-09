@@ -1,5 +1,9 @@
 package com.think17.containerdeep;
 
+import java.util.WeakHashMap;
+
+import org.junit.Test;
+
 /**
  *  WeakHashMap
  *    弱键映射（weak key)映射，允许释放映射所指向的对象，这是为了解决某类特殊问题而设计的。
@@ -20,4 +24,16 @@ package com.think17.containerdeep;
  */
 public class Example0082_WeakHashMap {
     
+	@Test
+	public void testWeakHashMap(){
+		WeakHashMap<String, String> w= new WeakHashMap<String, String>();  
+        w.put(new String("语文"),new String("优秀"));  
+        w.put(new String("数学"), new String("及格"));  
+        w.put(new String("英语"), new String("中等"));  
+        w.put("java", new String("特别优秀"));   //增加一个强引用
+        
+        System.out.println(w);  
+        System.gc();  
+        System.out.println("第二次输出:"+w);  
+	}
 }

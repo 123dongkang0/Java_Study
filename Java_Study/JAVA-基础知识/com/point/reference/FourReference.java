@@ -1,54 +1,73 @@
 package com.point.reference;
 
 import java.lang.ref.SoftReference;
+import java.lang.ref.WeakReference;
 
 import org.junit.Test;
 
 /**
  *  Java四种引用
  *  
- *
- *   （
- *   
+ *  1)、设置JVM虚拟机大小
+ *      最小值： -Xms5M
+ *      最大值： -Xmx10M
+ *      
+ *  2、弱引用一般使用于缓存
+ *  
  */
 public class FourReference {
 	/**
 	 *（1）强引用（StrongReference）
-     *       强引用是使用最普遍的引用。如果一个对象具有强引用，那垃圾回收器绝不会回收它。
-     *   当内存空间不足，Java虚拟机宁愿抛出OutOfMemoryError错误，使程序异常终止，也不会靠随意回收具有强引用的对象来解决内存不足的问题。
-     *   强引用其实也就是我们平时A a = new A()这个意思。 
 	 */
-	
+	@Test
+	public  void testStrong(){
+		//强引用，即使内存溢出，垃圾回收也不会回收此对象。new 就是一个强引用
+		byte[] b = new byte[1024*1024*10];
+	}
 	
 	/**
 	 * 2）软引用（SoftReference）
-	 *       软引用（soft reference）在强度上弱于强引用，通过类SoftReference来表示。
-	 *   它的作用是告诉垃圾回收器，程序中的哪些对象是不那么重要，当内存不足的时候是可以被暂时回收的。
-	 *   当JVM中的内存不足的时候，垃圾回收器会释放那些只被软引用所指向的对象。如果全部释放完这些对象之后，
-	 *   内存还不足，才会抛出OutOfMemory错误。软引用非常适合于创建缓存。当系统内存不足的时候，
-	 *   缓存中的内容是可以被释放的。
-	 *       
-	 *       比如考虑一个图像编辑器的程序。该程序会把图像文件的全部内容都读取到内存中，以方便进行处理。
-	 *    而用户也可以同时打开多个文件。当同时打开的文件过多的时候，就可能造成内存不足。
-	 *    如果使用软引用来指向图像文件内容的话，垃圾回收器就可以在必要的时候回收掉这些内存。
-	 * 
+	 *    
+	 *    内存不够的时候，才会被垃圾回收器所回收
 	 * 
 	 */
-	private SoftReference<byte[]> dataRef = new SoftReference<byte[]>(new byte[0]);
-	
-	private byte[] readFile(){
-	    return new byte[1024*1024];  //省略了读取文件的操作	
-	}
-	
 	@Test
-	public void testSoftReference(){
-	    byte[] dataArray = dataRef.get();
-	    if(dataArray == null || dataArray.length == 0){
-	    	dataArray = readFile();
-	    	dataRef = new SoftReference<byte[]>(dataArray);
-	    }
-	    System.out.println(dataArray);
+	public  void testSoft(){
+		ReferenceObject stroRef = new ReferenceObject();
+		//采取软引用存储
+		SoftReference<ReferenceObject>  softRef = new SoftReference<ReferenceObject>(stroRef);
+		//强引用失效（如果存在强引用，垃圾回收器是不会回收的，我们很难观察到效果。）
+		stroRef = null; 
+		System.out.println(softRef.get());
+		System.gc();
+		System.out.println(softRef.get());  //没有回收，因为内存足够
+		byte[] b = new byte[1024*1024*10];
+		System.gc();    //可以观察到有回收
 	}
 	
+	/**
+	 * 3）弱引用（SoftReference）
+	 *    
+	 *    只要运行垃圾回收，就会被回收
+	 * 
+	 */
+	@Test
+	public  void testWeak(){
+		ReferenceObject stroRef = new ReferenceObject();
+		//采取软引用存储
+		WeakReference<ReferenceObject>  softRef = new WeakReference<ReferenceObject>(stroRef);
+		//强引用失效（如果存在强引用，垃圾回收器是不会回收的，我们很难观察到效果。）
+		stroRef = null; 
+		System.out.println(softRef.get());
+		System.gc();     //观察到已经被回收
+	}
+	
+	/**
+	 * 3）虚引用（PhantomReference）
+	 *    
+	 *    虚引用就相当于没有引用，这种引用刚创建就会被回收，程序中基本不用
+	 *  所以这里不做详细说明。
+	 * 
+	 */
    
 }
