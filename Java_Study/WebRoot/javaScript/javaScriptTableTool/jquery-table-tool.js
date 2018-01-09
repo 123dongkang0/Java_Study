@@ -1,50 +1,50 @@
 /*
- * Ò³ÃæÁĞ±í²Ù×÷, jQuery plugin
- * Ê¹ÓÃ·½·¨
+ * é¡µé¢åˆ—è¡¨æ“ä½œ, jQuery plugin
+ * ä½¿ç”¨æ–¹æ³•
  * $("#listPage").subListTable({
-		"prefix" : "billLists",Ö¸¶¨Ìá½»Êı¾İÁĞ±íÃû
-		"displayIndex" : true,ÊÇ·ñÏÔÊ¾ĞòºÅ Ä¬ÈÏfalse
-		"displayField" : "GNo",ÏÔÊ¾ĞòºÅÃû³Æ£¬Ö¸¶¨Ãû³Æ£¬»áÔÚµÚÒ»ÁĞÌí¼Óinput hiddenÔªËØ
+		"prefix" : "billLists",æŒ‡å®šæäº¤æ•°æ®åˆ—è¡¨å
+		"displayIndex" : true,æ˜¯å¦æ˜¾ç¤ºåºå· é»˜è®¤false
+		"displayField" : "GNo",æ˜¾ç¤ºåºå·åç§°ï¼ŒæŒ‡å®šåç§°ï¼Œä¼šåœ¨ç¬¬ä¸€åˆ—æ·»åŠ input hiddenå…ƒç´ 
 		"trClass" : "trListContent"
 	});
-	Ä¬ÈÏ²ÎÊı¼û×îºóÉùÃ÷
+	é»˜è®¤å‚æ•°è§æœ€åå£°æ˜
  */
 (function($) {
 "use strict";
 
 var methods = {
 		/**
-		 * ³õÊ¼»¯
+		 * åˆå§‹åŒ–
 		 * @returns {Boolean}
 		 */
   init : function() {
     var $thisDiv = $(this),
     options = $.extend({}, $.subListTable, arguments[0]),
-  //Ö»È¡µÚÒ»¸öclassÎªoptions.listTableµÄ¶ÔÏó
+  //åªå–ç¬¬ä¸€ä¸ªclassä¸ºoptions.listTableçš„å¯¹è±¡
     listTable = $(this).find("."+options.listTableClass).first(),
-  //Ö»È¡µÚÒ»¸öclassÎªoptions.editTableµÄ¶ÔÏó
+  //åªå–ç¬¬ä¸€ä¸ªclassä¸ºoptions.editTableçš„å¯¹è±¡
     editTable = $(this).find("."+options.editTableClass).first()
     ;
 
-    //listTableÏÂµÄĞèÒª±à¼­Ìá½»µÄĞĞÑ¡ÔñÆ÷£¬ÓĞ±à¼­»òÉ¾³ı°´Å¥µÄĞĞ£¬»òÕßĞèÒª¼ÆÊıµÄĞĞ£¬Ñ¡ÖĞ
+    //listTableä¸‹çš„éœ€è¦ç¼–è¾‘æäº¤çš„è¡Œé€‰æ‹©å™¨ï¼Œæœ‰ç¼–è¾‘æˆ–åˆ é™¤æŒ‰é’®çš„è¡Œï¼Œæˆ–è€…éœ€è¦è®¡æ•°çš„è¡Œï¼Œé€‰ä¸­
     options.trSelector = "tr:has(."+options.editTrClass+", ."+options.deleteTrClass+"), tr."+options.countTrClass;
     options.listTable = listTable;
     options.editTable = editTable;
 
-  //Èç¹û²»´æÔÚÁĞ±íÇøÓò£¬Ö±½Ó·µ»Ø
+  //å¦‚æœä¸å­˜åœ¨åˆ—è¡¨åŒºåŸŸï¼Œç›´æ¥è¿”å›
     if($(listTable).length <= 0) return false;
 
     if(!options.prefix) {
-    	alert("ÇëÖ¸¶¨ÁĞ±íÇ°×º£¬¼´Ìá½»ÊôĞÔÃû[prefix]£¡");
+    	alert("è¯·æŒ‡å®šåˆ—è¡¨å‰ç¼€ï¼Œå³æäº¤å±æ€§å[prefix]ï¼");
     	return false;
     }
-    //³õÊ¼»¯ÁĞ±íÇøÓò°´Å¥
+    //åˆå§‹åŒ–åˆ—è¡¨åŒºåŸŸæŒ‰é’®
     listTable.find(options.trSelector)
-    .each( function (i, subTr) {//³õÊ¼»¯Ã¿Ìõ¼ÇÂ¼¶ÔÓ¦°´Å¥ÊÂ¼ş
+    .each( function (i, subTr) {//åˆå§‹åŒ–æ¯æ¡è®°å½•å¯¹åº”æŒ‰é’®äº‹ä»¶
       var $this = $(subTr);
       var index = options.index++;
-      $this.attr("index",index);//Ìí¼ÓindexÊôĞÔ
-      //¸øÒş²ØÓòÃû³ÆÌí¼ÓÇ°×º£¬Èç¹ûÃ»ÓĞÇ°×ºµÄ»°
+      $this.attr("index",index);//æ·»åŠ indexå±æ€§
+      //ç»™éšè—åŸŸåç§°æ·»åŠ å‰ç¼€ï¼Œå¦‚æœæ²¡æœ‰å‰ç¼€çš„è¯
       $this.find("input[type='hidden']:not([name^='"+options.prefix+"'])").each(function(i, value) {
     	  var name = $(value).attr("name");
     	  $(value).attr("name", options.prefix+"["+index+"]."+name);
@@ -57,16 +57,16 @@ var methods = {
     		  methods._deleteHandle);
     });
     
-  //Èç¹û²»´æÔÚ±à¼­Â¼ÈëÇøÓò£¬Ö±½Ó·µ»Ø
+  //å¦‚æœä¸å­˜åœ¨ç¼–è¾‘å½•å…¥åŒºåŸŸï¼Œç›´æ¥è¿”å›
     if($(editTable).length > 0) {
-    	//³õÊ¼»¯±à¼­ÇøÓò°´Å¥
-    	editTable.find("input."+options.addTrClass).click(function() {//µã»÷Ìí¼Ó°´Å¥£¬Ìí¼ÓĞĞ¼ÇÂ¼
+    	//åˆå§‹åŒ–ç¼–è¾‘åŒºåŸŸæŒ‰é’®
+    	editTable.find("input."+options.addTrClass).click(function() {//ç‚¹å‡»æ·»åŠ æŒ‰é’®ï¼Œæ·»åŠ è¡Œè®°å½•
     		var validateOptions = $.extend(true,{},$thisDiv.data('jqv'),{"eventTrigger.event": "click","eventTrigger.element":$(this)})
     		if($thisDiv.validationEngine && 
     				!$thisDiv.validationEngine("validate", validateOptions)) {
-    			return false; //Èç¹ûÓĞ±íµ¥ÑéÖ¤£¬ÇÒÑéÖ¤Ê§°Ü£¬Ö±½Ó·µ»Øfalse
+    			return false; //å¦‚æœæœ‰è¡¨å•éªŒè¯ï¼Œä¸”éªŒè¯å¤±è´¥ï¼Œç›´æ¥è¿”å›false
     		}
-    		//Ìí¼ÓÊı¾İÇ°Ö´ĞĞ×è¶Ï·½·¨£¬·µ»ØtrueÍ¨¹ı
+    		//æ·»åŠ æ•°æ®å‰æ‰§è¡Œé˜»æ–­æ–¹æ³•ï¼Œè¿”å›trueé€šè¿‡
     		if(window.doAddBefore) {
     			var before = doAddBefore(editTable, options.index)
     			if(before != undefined && !before) {
@@ -77,7 +77,7 @@ var methods = {
     		index = thisButton.attr("index"),
     		subTr;
     		if(index) {
-    			//ĞŞ¸ÄĞĞ¼ÇÂ¼Êı¾İ
+    			//ä¿®æ”¹è¡Œè®°å½•æ•°æ®
     			subTr = listTable.find("tr[index=\""+index+"\"]:first");
     			
     			editTable.find("input[type=\"hidden\"],input[type=\"text\"],select,textarea")
@@ -108,50 +108,50 @@ var methods = {
     			});
     			
     			listTable.find("input."+options.editTrClass+",input."+options.deleteTrClass)
-    			.prop("disabled", false);//ĞŞ¸ÄÍêÊı¾İºó£¬ËùÓĞ±à¼­£¬É¾³ı°´Å¥¶¼ÆôÓÃ
+    			.prop("disabled", false);//ä¿®æ”¹å®Œæ•°æ®åï¼Œæ‰€æœ‰ç¼–è¾‘ï¼Œåˆ é™¤æŒ‰é’®éƒ½å¯ç”¨
     			
     			thisButton.removeAttr("index");
     		} else {
-    			subTr = methods._addOneTr.call($thisDiv);//Ìí¼ÓĞĞ¼ÇÂ¼
+    			subTr = methods._addOneTr.call($thisDiv);//æ·»åŠ è¡Œè®°å½•
     		}
-    		//Ìí¼ÓÊı¾İÖ´ĞĞ·½·¨
+    		//æ·»åŠ æ•°æ®æ‰§è¡Œæ–¹æ³•
     		if(window.doAddAfter) {
     			doAddAfter(subTr);
     		}
     	});
     	
-    	editTable.find("input."+options.cancelTrClass).click(function() {//µã»÷È¡Ïû°´Å¥£¬È¡ÏûĞŞ¸Ä
-    		//È¡Ïû²Ù×÷Ç°Ö´ĞĞ×è¶Ï·½·¨£¬·µ»ØtrueÍ¨¹ı
+    	editTable.find("input."+options.cancelTrClass).click(function() {//ç‚¹å‡»å–æ¶ˆæŒ‰é’®ï¼Œå–æ¶ˆä¿®æ”¹
+    		//å–æ¶ˆæ“ä½œå‰æ‰§è¡Œé˜»æ–­æ–¹æ³•ï¼Œè¿”å›trueé€šè¿‡
     		if(window.doCancelBefore) {
     			var before = doCancelBefore(editTable);
     			if(before != undefined && !before) {
     				return false;
     			}
     		}
-    		//È¡ÏûĞŞ¸Äºó£¬ËùÓĞ±à¼­£¬É¾³ı°´Å¥¶¼ÆôÓÃ
+    		//å–æ¶ˆä¿®æ”¹åï¼Œæ‰€æœ‰ç¼–è¾‘ï¼Œåˆ é™¤æŒ‰é’®éƒ½å¯ç”¨
     		listTable.find("input."+options.editTrClass+",input."+options.deleteTrClass)
     		.prop("disabled", false);
-    		//ÒÆ³ıÌí¼Ó°´Å¥ÉÏµÄindexÊôĞÔ
+    		//ç§»é™¤æ·»åŠ æŒ‰é’®ä¸Šçš„indexå±æ€§
     		editTable.find("input."+options.addTrClass).removeAttr("index");
-    		//ËùÓĞÔªËØ¶¼Çå¿Õ
+    		//æ‰€æœ‰å…ƒç´ éƒ½æ¸…ç©º
     		editTable.find("input[type=\"hidden\"],input[type=\"text\"],select,textarea")
     		.each(function(i, ele) {
     			$(ele).val("");
     		});
-    		//È¡ÏûºóÖ´ĞĞ·½·¨
+    		//å–æ¶ˆåæ‰§è¡Œæ–¹æ³•
     		if(window.doCancelAfter) {
     			doCancelAfter(editTable);
     		}
     	});
     	$thisDiv.bind("clearTr", {"options": options, "listTable": listTable, "editTable": editTable}, methods._clearHandle);
     }
-    //±£´æ²ÎÊı
+    //ä¿å­˜å‚æ•°
     if(!$thisDiv.data("options")) {
     	$thisDiv.data("options", options);
     }
   },
   /**
-   * Ìí¼ÓĞÂ¼ÇÂ¼ĞĞ
+   * æ·»åŠ æ–°è®°å½•è¡Œ
    * @param datas
    * @returns
    */
@@ -159,7 +159,7 @@ var methods = {
     return methods._addOneTr.call(this, datas);
   },
   /**
-   * Ìí¼ÓĞĞ¼ÇÂ¼£¬½«±à¼­ÇøÓòÊı¾İÌí¼ÓĞĞÁĞ±íÇø
+   * æ·»åŠ è¡Œè®°å½•ï¼Œå°†ç¼–è¾‘åŒºåŸŸæ•°æ®æ·»åŠ è¡Œåˆ—è¡¨åŒº
    * @param datas
    * @returns
    */
@@ -168,7 +168,7 @@ var methods = {
 	  options = $(this).data("options"),
 	  listTable = options.listTable,
 	  editTable = options.editTable,
-	  //¼ÇÂ¼Ë÷Òı
+	  //è®°å½•ç´¢å¼•
 	  index = options.index++,
 	  trStr = "";
 	  
@@ -187,7 +187,7 @@ var methods = {
    
     trStr = "<tr class='"+options.trClass+"' index='"+index+"'>";
    
-    if(options.displayIndex) {//ÊÇ·ñĞèÒª¼ÇÂ¼ĞòºÅ
+    if(options.displayIndex) {//æ˜¯å¦éœ€è¦è®°å½•åºå·
     	trStr += "<td class="+options.tdClass+">"+(index + 1);
     	if(options.displayField) {
     		trStr += "<input type='hidden' name='"+options.prefix+"["+index+"]."+options.displayField+
@@ -207,20 +207,20 @@ var methods = {
     	  "' value='"+methods._emptyReplace(datas[keyname])+"'/></td>";
       }
    
-      delete datas[keyname];//È¥µôÒÑ¾­Ìí¼ÓµÄÊı¾İ
+      delete datas[keyname];//å»æ‰å·²ç»æ·»åŠ çš„æ•°æ®
     });
     trStr += "<td align=\"center\">";
    if(options.addEditButton) {
-	   trStr += "<input type=\"button\" class=\"short_button "+options.editTrClass+"\" value=\"±à¼­\" />";
+	   trStr += "<input type=\"button\" class=\"short_button "+options.editTrClass+"\" value=\"ç¼–è¾‘\" />";
    }
    if(options.addDeleteButton) {
-	   trStr += "<input type=\"button\" class=\"short_button "+options.deleteTrClass+"\" value=\"É¾³ı\" />";
+	   trStr += "<input type=\"button\" class=\"short_button "+options.deleteTrClass+"\" value=\"åˆ é™¤\" />";
    }
-    //½«ËùÓĞÒş²Ø×Ö¶Î·ÅÓÚ×îºóTD
+    //å°†æ‰€æœ‰éšè—å­—æ®µæ”¾äºæœ€åTD
     for(var key in datas) {
       trStr += "<input type='hidden' name='"+options.prefix+"["+index+"]."+key+"' value='"
         +methods._emptyReplace(datas[key])+"' />";
-        delete datas[key];//È¥µôÒÑ¾­Ìí¼ÓµÄÊı¾İ
+        delete datas[key];//å»æ‰å·²ç»æ·»åŠ çš„æ•°æ®
     }
     trStr += "</td></tr>";
     var $thisTr = $(trStr).appendTo(listTable);
@@ -234,7 +234,7 @@ var methods = {
     return $thisTr;
   },
   /**
-   * µã»÷±à¼­°´Å¥£¬ĞŞ¸ÄĞĞ¼ÇÂ¼
+   * ç‚¹å‡»ç¼–è¾‘æŒ‰é’®ï¼Œä¿®æ”¹è¡Œè®°å½•
    * @param event
    * @returns {Boolean}
    */
@@ -246,9 +246,9 @@ var methods = {
 	    	}
 	    }
 	  event.data.listTable.find("input."+event.data.options.editTrClass+",input."+event.data.options.deleteTrClass)
-	  .prop("disabled", true);//ĞŞ¸Äµ±Ç°Êı¾İÊ±£¬ËùÓĞ±à¼­£¬É¾³ı°´Å¥¶¼½ûÓÃ
+	  .prop("disabled", true);//ä¿®æ”¹å½“å‰æ•°æ®æ—¶ï¼Œæ‰€æœ‰ç¼–è¾‘ï¼Œåˆ é™¤æŒ‰é’®éƒ½ç¦ç”¨
 	  event.data.editTable.find("input."+event.data.options.addTrClass)
-	  .attr("index", event.data.subTr.attr("index"));//Ìí¼ÓË÷Òı
+	  .attr("index", event.data.subTr.attr("index"));//æ·»åŠ ç´¢å¼•
     methods._reEdit.call(event.data.editTable, event.data.subTr);
     if(window.doEditAfter) {
     	doEditAfter(event.data.subTr);
@@ -256,12 +256,12 @@ var methods = {
     return;
   },
   /**
-   * µã»÷É¾³ı°´Å¥£¬É¾³ıµ±Ç°¼ÇÂ¼
+   * ç‚¹å‡»åˆ é™¤æŒ‰é’®ï¼Œåˆ é™¤å½“å‰è®°å½•
    * @param event
    * @returns {Boolean}
    */
   _deleteHandle : function(event) {
-	  if(confirm("ÄúÈ·¶¨ÒªÉ¾³ı¸ÃÌõ¼ÇÂ¼Âğ£¿"))
+	  if(confirm("æ‚¨ç¡®å®šè¦åˆ é™¤è¯¥æ¡è®°å½•å—ï¼Ÿ"))
 	    {
 		    if(window.doDeleteBefore) {
 		    	var before = doDeleteBefore(event.data.subTr);
@@ -269,7 +269,7 @@ var methods = {
 		    		return false;
 		    	}
 		    }
-		  event.data.subTr.nextAll("tr").each(function(i, subTr) {//ËùÓĞµ±Ç°TrºóµÄTr¶¼ÖØÖÃË÷Òı
+		  event.data.subTr.nextAll("tr").each(function(i, subTr) {//æ‰€æœ‰å½“å‰Tråçš„Tréƒ½é‡ç½®ç´¢å¼•
 			  var index = $(subTr).attr("index") - 1;
 			  $(subTr).attr("index",index).find("input[type=\"hidden\"]").each(function() {
 				  var $this = $(this);
@@ -277,7 +277,7 @@ var methods = {
 				  name = name.replace(/\[\d+\]/g,"["+index+"]");
 				  $this.attr("name",name);
 			  });
-			  if(event.data.options.displayIndex) {//ÊÇ·ñĞèÒª¼ÇÂ¼ĞòºÅ
+			  if(event.data.options.displayIndex) {//æ˜¯å¦éœ€è¦è®°å½•åºå·
 				  var td = $(subTr).find("td:first");
 				  if(event.data.options.displayField) {
 					  var hiddenInput = td.find("input");
@@ -292,7 +292,7 @@ var methods = {
 		  
 		  methods._removeTr.call(event.data.listTable, event.data.subTr);
 		  
-		  //Ë÷Òı¼õÒ»
+		  //ç´¢å¼•å‡ä¸€
 		  event.data.options.index--;
 		  
 		  if(window.doDeleteAfter) {
@@ -302,11 +302,11 @@ var methods = {
       return true;
     },
     /**
-     * Çå³ıËùÓĞÁĞ±íTRÔªËØ£¬²»°üÀ¨±íÍ·ĞĞ
+     * æ¸…é™¤æ‰€æœ‰åˆ—è¡¨TRå…ƒç´ ï¼Œä¸åŒ…æ‹¬è¡¨å¤´è¡Œ
      * @param listTable
      */
     _clearHandle : function(event) {
-    	//Ë÷ÒıÖÃ0
+    	//ç´¢å¼•ç½®0
     	event.data.options.index = 0;
     	event.data.listTable.find("tr").slice(1).each(function(index, value) {
     		$(this).remove();
@@ -314,7 +314,7 @@ var methods = {
     },
     
     /**
-     * É¾³ıĞĞ
+     * åˆ é™¤è¡Œ
      * @param subTr
      * @returns {Boolean}
      */
@@ -323,8 +323,8 @@ var methods = {
     return false;
   },
   /**
-   * ±à¼­ĞĞÊı¾İ
-   * ½«Êı¾İ¸´ÖÆµ½±à¼­Çø
+   * ç¼–è¾‘è¡Œæ•°æ®
+   * å°†æ•°æ®å¤åˆ¶åˆ°ç¼–è¾‘åŒº
    * @param subTr
    * @returns {Boolean}
    */
@@ -337,7 +337,7 @@ var methods = {
     return false;
   },
   /**
-   * ÅĞ¶ÏÊÇ·ñÊÇ¿Õ¶ÔÏó
+   * åˆ¤æ–­æ˜¯å¦æ˜¯ç©ºå¯¹è±¡
    * @param target
    */
   _isEmpty : function(target) {
@@ -358,7 +358,7 @@ var methods = {
   	
   },
   /**
-   * ¿ÕÖµÌæ»»
+   * ç©ºå€¼æ›¿æ¢
    * @param target
    * @param replace
    * @returns
@@ -382,7 +382,7 @@ $.fn.subListTable = function() {
   if(typeof method == 'object') {
 	  return methods.init.call(this, method);
   } else if(typeof(method) == 'string' && method.charAt(0) != '_' && methods[method]) {
-	//±£´æ²ÎÊı,³õÊ¼»¯
+	//ä¿å­˜å‚æ•°,åˆå§‹åŒ–
 	    if(!$(this).data("options") && options.needInit) {
 	    	methods.init.call(this, options);
 	    }
@@ -391,19 +391,19 @@ $.fn.subListTable = function() {
 	  $.error('Method ' + method + ' does not exist in this toolkit');
   }
 };
-//Ìí¼ÓÄ¬ÈÏ²ÎÊı
+//æ·»åŠ é»˜è®¤å‚æ•°
 $.subListTable = {
-	//ĞĞ¼ÇÂ¼Ë÷Òı£¬´Ó0¿ªÊ¼
+	//è¡Œè®°å½•ç´¢å¼•ï¼Œä»0å¼€å§‹
 	index : 0,
-    listTableClass : "listTable",//ÁĞ±ítableµÄclassÄ¬ÈÏÖµ
-    editTableClass : "editTable",//±à¼­tableµÄclassÄ¬ÈÏÖµ
-    editTrClass : "editTr",//ÁĞ±íĞĞ×îºóµÄ±à¼­°´Å¥classÖµ
-    deleteTrClass : "deleteTr",//ÁĞ±íĞĞ×îºóµÄÉ¾³ı°´Å¥classÖµ
-    cancelTrClass : "cancelTr",//±à¼­tableºóµÄÈ¡Ïû°´Å¥classÖµ
-    countTrClass : "countTr",//ĞèÒª¼ÆÊıµÄclassÖµ
-    addTrClass : "addTr",//±à¼­tableºóµÄÌí¼Ó°´Å¥classÖµ
-    addDeleteButton: true,//Ìí¼ÓÉ¾³ı°´Å¥
-    addEditButton:true,//Ìí¼Ó±à¼­°´Å¥
+    listTableClass : "listTable",//åˆ—è¡¨tableçš„classé»˜è®¤å€¼
+    editTableClass : "editTable",//ç¼–è¾‘tableçš„classé»˜è®¤å€¼
+    editTrClass : "editTr",//åˆ—è¡¨è¡Œæœ€åçš„ç¼–è¾‘æŒ‰é’®classå€¼
+    deleteTrClass : "deleteTr",//åˆ—è¡¨è¡Œæœ€åçš„åˆ é™¤æŒ‰é’®classå€¼
+    cancelTrClass : "cancelTr",//ç¼–è¾‘tableåçš„å–æ¶ˆæŒ‰é’®classå€¼
+    countTrClass : "countTr",//éœ€è¦è®¡æ•°çš„classå€¼
+    addTrClass : "addTr",//ç¼–è¾‘tableåçš„æ·»åŠ æŒ‰é’®classå€¼
+    addDeleteButton: true,//æ·»åŠ åˆ é™¤æŒ‰é’®
+    addEditButton:true,//æ·»åŠ ç¼–è¾‘æŒ‰é’®
     trClass : "",//
     tdClass : "",//
     displayIndex : false,//
