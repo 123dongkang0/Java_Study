@@ -1,52 +1,64 @@
-
+/*
+ * 页面列表操作, jQuery plugin
+ * 使用方法
+ * $("#listPage").subListTable({
+		"prefix" : "billLists",指定提交数据列表名
+		"displayIndex" : true,是否显示序号 默认false
+		"displayField" : "GNo",显示序号名称，指定名称，会在第一列添加input hidden元素
+		"trClass" : "trListContent"
+	});
+	默认参数见最后声明
+ */
 (function($) {
 "use strict";
 
 var methods = {
-  /**
-   * 初始化方法 
-   */
+		/**
+		 * 初始化
+		 * @returns {Boolean}
+		 */
   init : function() {
     var $thisDiv = $(this),
-        options = $.extend({}, $.tableListTool, arguments[0]),
-        listTable = $(this).find("."+options.listTableClass).first(),     //只取第一个class为options.listTable的对象
-        editTable = $(this).find("."+options.editTableClass).first();     //只取第一个class为options.editTable的对象
+    options = $.extend({}, $.subListTable, arguments[0]),
+  //只取第一个class为options.listTable的对象
+    listTable = $(this).find("."+options.listTableClass).first(),
+  //只取第一个class为options.editTable的对象
+    editTable = $(this).find("."+options.editTableClass).first()
+    ;
 
-    options.trSelector = "tr:has(."+options.editTrClass+", ."+options.deleteTrClass+"), tr."+options.countTrClass; //listTable下面的需要提交的行、编辑按钮、删除按钮
+    //listTable下的需要编辑提交的行选择器，有编辑或删除按钮的行，或者需要计数的行，选中
+    options.trSelector = "tr:has(."+options.editTrClass+", ."+options.deleteTrClass+"), tr."+options.countTrClass;
     options.listTable = listTable;
     options.editTable = editTable;
 
-    if($(listTable).length <= 0) return false;                             //如果不存在列表区域，直接返回
+  //如果不存在列表区域，直接返回
+    if($(listTable).length <= 0) return false;
 
     if(!options.prefix) {
     	alert("请指定列表前缀，即提交属性名[prefix]！");
     	return false;
     }
-    
     //初始化列表区域按钮
-    listTable.find(options.trSelector).each( function (i, subTr) {         //初始化每条记录对应按钮事件
-    					var $this = $(subTr),
-    					    index = options.index++;
-    					
-                        $this.attr("index",index);//添加index属性
-     
-                        $this.find("input[type='hidden']:not([name^='"+options.prefix+"'])").each(function(i, value) {  //给隐藏数据添加前缀
-                             var name = $(value).attr("name");
-    	                     $(value).attr("name", options.prefix+"["+index+"]."+name);
-                        });
-                        
-                        $this.find("input."+options.editTrClass).click(    //编辑按钮添加事件
-    		                  {"options": options, "listTable": listTable, "editTable": editTable, "subTr": $this},
-    		                  methods._editHandle
-    		                  );
-      
-                        $this.find("input."+options.deleteTrClass).click(  //删除按钮添加事件
-    		                  {"options": options, "listTable": listTable, "subTr": $this},
-    		                  methods._deleteHandle
-    		                  );
+    listTable.find(options.trSelector)
+    .each( function (i, subTr) {//初始化每条记录对应按钮事件
+      var $this = $(subTr);
+      var index = options.index++;
+      $this.attr("index",index);//添加index属性
+      //给隐藏域名称添加前缀，如果没有前缀的话
+      $this.find("input[type='hidden']:not([name^='"+options.prefix+"'])").each(function(i, value) {
+    	  var name = $(value).attr("name");
+    	  $(value).attr("name", options.prefix+"["+index+"]."+name);
+      });
+      $this.find("input."+options.editTrClass).click(
+    		  {"options": options, "listTable": listTable, "editTable": editTable, "subTr": $this},
+    		  methods._editHandle);
+      $this.find("input."+options.deleteTrClass).click(
+    		  {"options": options, "listTable": listTable, "subTr": $this},
+    		  methods._deleteHandle);
     });
     
-    if($(editTable).length > 0) {     //如果不存在编辑录入区域，直接返回
+  //如果不存在编辑录入区域，直接返回
+    if($(editTable).length > 0) {
     	//初始化编辑区域按钮
     	editTable.find("input."+options.addTrClass).click(function() {//点击添加按钮，添加行记录
     		var validateOptions = $.extend(true,{},$thisDiv.data('jqv'),{"eventTrigger.event": "click","eventTrigger.element":$(this)})
@@ -362,32 +374,39 @@ var methods = {
   }
 
 };
-
-$.fn.tableListTool = function() {
-  var method = arguments[0];
+$.fn.subListTable = function() {
+  var method = arguments[0],
+  methodParam = arguments[1] || {},
+  options = arguments[2] || {};
  
   if(typeof method == 'object') {
 	  return methods.init.call(this, method);
-  } else{
-	  $.error(' Parameter' + method + ' is error of tableListTool');
+  } else if(typeof(method) == 'string' && method.charAt(0) != '_' && methods[method]) {
+	//保存参数,初始化
+	    if(!$(this).data("options") && options.needInit) {
+	    	methods.init.call(this, options);
+	    }
+	  return methods[method].call(this, methodParam);
+  } else {
+	  $.error('Method ' + method + ' does not exist in this toolkit');
   }
 };
-
-$.tableListTool = {
-	index : 0,                    //行记录索引，从0开始
-    listTableClass : "listTable", //列表table的class默认值
-    editTrClass : "",             //列表行最后的编辑按钮class值
-    deleteTrClass : "",           //列表行最后的删除按钮class值
-    editTableClass : "editTable", //编辑table的class默认值
-    cancelTrClass : "",           //编辑table后的取消按钮class值 【必填】
-    countTrClass : "countTr",     //需要计数的class值
-    addTrClass : "addTr",         //编辑table后的添加按钮class值
-    addDeleteButton: true,        //添加删除按钮
-    addEditButton:true,           //添加编辑按钮
-    trClass : "",                 //
-    tdClass : "",                 //
-    tdClass : "",                 //
-    displayIndex : false,         //
-    displayField : undefined      //
+//添加默认参数
+$.subListTable = {
+	//行记录索引，从0开始
+	index : 0,
+    listTableClass : "listTable",//列表table的class默认值
+    editTableClass : "editTable",//编辑table的class默认值
+    editTrClass : "editTr",//列表行最后的编辑按钮class值
+    deleteTrClass : "deleteTr",//列表行最后的删除按钮class值
+    cancelTrClass : "cancelTr",//编辑table后的取消按钮class值
+    countTrClass : "countTr",//需要计数的class值
+    addTrClass : "addTr",//编辑table后的添加按钮class值
+    addDeleteButton: true,//添加删除按钮
+    addEditButton:true,//添加编辑按钮
+    trClass : "",//
+    tdClass : "",//
+    displayIndex : false,//
+    displayField : undefined//
 };
 })(jQuery);
