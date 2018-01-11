@@ -75,6 +75,32 @@
 			   element[0].value = data[map[prop]];
 		   }
 	   }
+   },
+   /**
+    * 是否为null的校验
+    */
+   validateisnull:function(options){
+	   for(prop in options){
+		   var element = document.getElementsByName(prop);
+		   if(element.length != 1){  //说明是radio
+			   var validate =false;
+			   for(var i = 0 ; i < element.length; i++){
+					if(element[i].checked){
+						validate = true;
+					}
+				}
+			   if(!validate){
+				   alert(options[prop]);
+				   return false;
+			   }
+		   }else{
+			   if(element[0].value <= 0){
+				   alert(options[prop]);
+				   return false;
+			   }
+		   }
+	  }
+	  return true;
    }
   }
 })(jQuery);
