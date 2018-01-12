@@ -10,6 +10,7 @@
     
     <script type="text/javascript" src="../../scripts/jquery-1.8.3.js" ></script>
     <script type="text/javascript" src="../../scripts/jquery-ui-1.10.4.custom/js/jquery-ui-1.10.4.custom.min.js" ></script>
+    <script type="text/javascript" src="../../scripts/jquery.ajaxfileupload.js" ></script>
     <script type="text/javascript" src="jquery-tool.js" ></script>
     
   </head>
@@ -51,18 +52,18 @@
     <br/>
     <h1>2、文件上传</h1>
     <input type="file" id="file1" /> <button id="button1"> 上传 </button>
-    <script type="text/javascript" src="jquery-tool-fileupload-divl.js"></script>
+    <script type="text/javascript" src="jquery-tool-fileupload-div.js"></script>
     <script>
 		$(function() {
 			$("#button1").click(function(){
 				var validate = $.jqueryTool.fileuploadvalidate({
                     "elementId" : "file1",
-                    "fileType" : /(.jpg|.JPG|.gif|.GIF)$/
+                    "fileType" : /(.jpg|.JPG|.gif|.GIF|.pdf|.PDF)$/
                    });
 				if("1" == validate){
 					$.jqueryTool.fileupload({
 	                     "elementId" : file1,
-	                     "url" : "www.baidu.com"
+	                     "url" : "../../FileUploadServlet"
 	                    });
 				}else{
 					alert(validate);

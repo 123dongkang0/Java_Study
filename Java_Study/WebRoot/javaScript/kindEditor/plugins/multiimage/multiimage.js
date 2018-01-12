@@ -284,7 +284,7 @@ KindEditor.plugin('multiimage', function(K) {
 					}
 					self.exec('insertimage', data.url, data.title, data.width, data.height, data.border, data.align);
 				});
-				// Bugfix: [Firefox] 上传图片后，总是出现正在加载的样式，需要延迟执行hideDialog
+				// Bugfix: [Firefox] 涓婁紶鍥剧墖鍚庯紝鎬绘槸鍑虹幇姝ｅ湪鍔犺浇鐨勬牱寮忥紝闇�寤惰繜鎵цhideDialog
 				setTimeout(function() {
 					self.hideDialog().focus();
 				}, 0);
@@ -299,7 +299,7 @@ KindEditor.plugin('multiimage', function(K) {
  *
  * mmSWFUpload 1.0: Flash upload dialog - http://profandesign.se/swfupload/,  http://www.vinterwebb.se/
  *
- * SWFUpload is (c) 2006-2007 Lars Huring, Olov Nilz閚 and Mammon Media and is released under the MIT License:
+ * SWFUpload is (c) 2006-2007 Lars Huring, Olov Nilz闁�and Mammon Media and is released under the MIT License:
  * http://www.opensource.org/licenses/mit-license.php
  *
  * SWFUpload 2 is (c) 2007-2008 Jake Roberts and is released under the MIT License:

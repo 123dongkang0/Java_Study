@@ -41,8 +41,19 @@
      </filter>
      <filter-mapping>  
         <filter-name>struts2</filter-name>  
-        <url-pattern>/*</url-pattern>  
+        <url-pattern>*.action</url-pattern>  
      </filter-mapping>
      
+     
+     <!-- 文件上传 -->
+	<servlet>
+	    <servlet-name>FileUploadServlet</servlet-name>
+	    <servlet-class>com.dongk.util.servlet.FileUploadServlet</servlet-class>
+  	</servlet>
+  
+ 	<servlet-mapping>
+	    <servlet-name>FileUploadServlet</servlet-name>
+	    <url-pattern>/FileUploadServlet</url-pattern>
+    </servlet-mapping>
   
 </web-app>
