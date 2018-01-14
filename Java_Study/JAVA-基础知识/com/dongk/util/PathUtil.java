@@ -15,11 +15,11 @@ public class PathUtil {
 	/**
 	 * 文件存储跟目录 
 	 */
-	private static final String FILE_ROOT = Config.getProperty("upload.tomcat.docBase");
+	private static final String FILE_ROOT = Config.getProperty("upload.tomcat.fileroot");
 	/**
 	 * tomcat虚拟目录 
 	 */
-	private static final String TOMCAT_VIRTUAL_PATH = Config.getProperty("upload.tomcat.path");
+	private static final String TOMCAT_VIRTUAL_PATH = Config.getProperty("upload.tomcat.virtualpath");
 
 	/**
 	 * Copyright (C), 2017-11-03

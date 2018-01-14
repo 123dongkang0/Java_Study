@@ -39,7 +39,7 @@ public class Config {
 		}
 		return p;
 	}
-
+	
 	public Config() {
 		log = LogFactory.getLog(getClass().getName());
 	}

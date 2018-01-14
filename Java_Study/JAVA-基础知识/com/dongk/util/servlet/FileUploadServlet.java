@@ -79,7 +79,7 @@ public class FileUploadServlet extends HttpServlet {
 	private String uploadCache(FileItem item) throws Exception{
 		String oldFileName = getFileName(item.getName());         //旧的文件名
 		String newFileName = generateFileName(item.getName());    //新的文件名
-		String filePath = Config.getProperty("upload.cache.dir") + new SimpleDateFormat("yyyyMMdd").format(new Date());
+		String filePath = Config.getProperty("upload.cache.dir") + File.separator + new SimpleDateFormat("yyyyMMdd").format(new Date());
     	if (!new File(filePath).exists() && !new File(filePath).isDirectory()) {
 			new File(filePath).mkdirs();
 		}
