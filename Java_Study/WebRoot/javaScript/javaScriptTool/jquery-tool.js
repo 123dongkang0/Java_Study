@@ -12,7 +12,7 @@
 	 * 
 	 */	  
     showControl:function(name,options) { 
-       var element = document.getElementsByName(prop);
+       var element = document.getElementsByName(name);
 	   for(var i = 0 ; i < element.length; i++){
 			if(element[i].checked){
 				if(options[element[i].value]){
