@@ -6,57 +6,20 @@
 (function($) {
   $.jqueryTool = {
     /**
-     *文件上传校验
-	 *@param elementId : 文件输入框的ID
-	 *@param fileType : 文件类型(必须是正则表达式)
+     *控制DIV的显示和隐藏
+	 *@param showId : 显示的元素的id
+	 *@param all : 所有元素的id(是一个集合)
 	 * 
 	 */	  
-    fileuploadvalidate:function(options) { 
-       var elementValue = $("#" + options.elementId).val();
-       if(elementValue.length==0){
-    		 return "请选择需要上传的文件！！";
-       }
-       if(!options.fileType.test(elementValue)){
-           return "文件类型错误，请重新选择！";
-        }
-       return "1";
-    },
-    /**
-     *文件上传
-	 *@param elementId : 文件输入框的ID
-	 *@param url : 上传地址
-	 * 
-	 */	  
-    fileupload:function(options) {   //文件上传，并返回相应的字符串
-    	
-    	$("#dialog-modal").dialog({
-			height: 140,
-			modal: true,
-			open: function (event, ui) {   //隐藏默认的关闭按钮
-				$(".ui-dialog-titlebar-close", $(this).parent()).hide();
-			}
-		});
-    	
-    	$.ajaxFileUpload({
-    		url : options.url,
-    		secureuri : false,
-    		fileElementId : options.elementId,
-    		dataType : 'json',
-    		success : function(data, status) {
-    			$("#dialog-modal").dialog("close");
-    			return data;
-    		},
-    		error : function(data, status, e) {
-    			$("#dialog-modal").dialog("close");
-    			return {
-    				      "result" : "0",
-    				      "info" : "文件上传失败！" + e,
-    				      "data" : "[]"
-    			        }
+    showControl:function(showId,all) { 
+    	for(id in all){
+    		if(all[id] == showId){
+    			$("#" + all[id] ).show();
+    		}else{
+    			$("#" + all[id] ).hide();
     		}
-    	});
-    	return false;
-   },
+    	}
+    },
    /**
     *将数据复制到输入框中
 	*@param data  : 需要复制的数据

@@ -48,29 +48,41 @@
                                     });
     </script>
     
-    <!-- 2.jqueryTool  fileupload 方法测试 -->
+    <!-- 2.jqueryTool  showControl 方法测试 -->
     <br/>
-    <h1>2、文件上传</h1>
-    <input type="file" id="file1" /> <button id="button1"> 上传 </button>
-    <script type="text/javascript" src="jquery-tool-fileupload-div.js"></script>
+    <h1>2、单选框radio控制div的显示和隐藏</h1>
+    <input type="radio" name="love" value="basketball" onchange="" /> 篮球
+    <input type="radio" name="love" value="bootball" checked="true" /> 足球
+    <input type="radio" name="love" value="pingpangball" /> 乒乓球 
+    <div id="basketball">
+                    篮球是一项极好的运动项目....
+    </div>
+    <div id="bootball">
+                     足球是一项极好的运动项目.... 
+    </div>
+    <div id="pingpangball">
+                     乒乓球 是一项极好的运动项目....
+    </div>
     <script>
-		$(function() {
-			$("#button1").click(function(){
-				var validate = $.jqueryTool.fileuploadvalidate({
-                    "elementId" : "file1",
-                    "fileType" : /(.jpg|.JPG|.gif|.GIF|.pdf|.PDF)$/
-                   });
-				if("1" == validate){
-					$.jqueryTool.fileupload({
-	                     "elementId" : file1,
-	                     "url" : "../../FileUploadServlet"
-	                    });
-				}else{
-					alert(validate);
-				}
-		    });
-		});
-			
+		
+	    $(function(){
+		  $("input[name='love']").click(function(){
+		       var showId = this.value;
+		       $.jqueryTool.showControl(showId,["basketball","bootball","pingpangball"]);
+		  });
+		  
+		  (function(){
+		      var showId,
+		          element = document.getElementsByName("love");
+		      for(var i = 0 ; i < element.length; i++){
+				 if(element[i].checked){
+					showId = element[i].value;
+				 }
+			  }
+			  $.jqueryTool.showControl(showId,["basketball","bootball","pingpangball"]);
+		  }());
+		  
+	    });	
 		
 	</script>
   
