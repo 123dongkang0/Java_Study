@@ -67,19 +67,15 @@
 		
 	    $(function(){
 		  $("input[name='love']").click(function(){
-		       var showId = this.value;
-		       $.jqueryTool.showControl(showId,["basketball","bootball","pingpangball"]);
+		       $.jqueryTool.showControl("love",{"basketball":"basketball",
+		                                        "bootball":"bootball",
+		                                        "pingpangball":"pingpangball"});
 		  });
 		  
 		  (function(){
-		      var showId,
-		          element = document.getElementsByName("love");
-		      for(var i = 0 ; i < element.length; i++){
-				 if(element[i].checked){
-					showId = element[i].value;
-				 }
-			  }
-			  $.jqueryTool.showControl(showId,["basketball","bootball","pingpangball"]);
+		       $.jqueryTool.showControl("love",{"basketball":"basketball",
+		                                        "bootball":"bootball",
+		                                        "pingpangball":"pingpangball"});
 		  }());
 		  
 	    });	

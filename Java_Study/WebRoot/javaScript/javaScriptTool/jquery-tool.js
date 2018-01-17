@@ -7,18 +7,23 @@
   $.jqueryTool = {
     /**
      *控制DIV的显示和隐藏
-	 *@param showId : 显示的元素的id
-	 *@param all : 所有元素的id(是一个集合)
+	 *@param name : 控制元素id
+	 *@param options : 值和DIV的Id的对应关系
 	 * 
 	 */	  
-    showControl:function(showId,all) { 
-    	for(id in all){
-    		if(all[id] == showId){
-    			$("#" + all[id] ).show();
-    		}else{
-    			$("#" + all[id] ).hide();
-    		}
-    	}
+    showControl:function(name,options) { 
+       var element = document.getElementsByName(prop);
+	   for(var i = 0 ; i < element.length; i++){
+			if(element[i].checked){
+				if(options[element[i].value]){
+					$("#" + options[element[i].value] ).show();
+				}
+			}else{
+				if(options[element[i].value]){
+					$("#" + options[element[i].value] ).hide();
+				}
+			}
+		}
     },
    /**
     *将数据复制到输入框中
