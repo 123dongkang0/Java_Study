@@ -1,11 +1,11 @@
 (function( $ ){
     // 当domReady的时候开始初始化
     $(function() {
-        var $wrap = $('#uploader'),
+        var $wrap = $('#uploader-uploader'),
 
             // 图片容器
             $queue = $( '<ul class="filelist"></ul>' )
-                .appendTo( $wrap.find( '.queueList' ) ),
+                .appendTo( $wrap.find( '.uploader-queueList' ) ),
 
             // 状态栏，包括进度和控制按钮
             $statusBar = $wrap.find( '.statusBar' ),
@@ -139,19 +139,13 @@
 
         // 实例化
         uploader = WebUploader.create({
-            pick: {
-                id: '#filePicker',
-                label: '点击选择图片'
-            },
             formData: {
                 uid: 123
             },
-            dnd: '#dndArea',
-            paste: '#uploader',
-            swf: '../../dist/Uploader.swf',
+            swf: 'Uploader.swf',
             chunked: false,
             chunkSize: 512 * 1024,
-            server: '../../../../FileUploadServlet',
+            server: '../../FileUploadServlet',
             // runtimeOrder: 'flash',
 
             // accept: {
@@ -198,8 +192,8 @@
 
         // 添加“添加文件”的按钮，
         uploader.addButton({
-            id: '#filePicker2',
-            label: '继续添加'
+            id: '#uploader-filePicker2',
+            label: '添加'
         });
 
         uploader.on('ready', function() {
@@ -395,27 +389,27 @@
             var text = '', stats;
 
             if ( state === 'ready' ) {
-                text = '选中' + fileCount + '张图片，共' +
+                text = '选中' + fileCount + '个文件，共' +
                         WebUploader.formatSize( fileSize ) + '。';
             } else if ( state === 'confirm' ) {
                 stats = uploader.getStats();
                 if ( stats.uploadFailNum ) {
-                    text = '已成功上传' + stats.successNum+ '张照片至XX相册，'+
-                        stats.uploadFailNum + '张照片上传失败，<a class="retry" href="#">重新上传</a>失败图片或<a class="ignore" href="#">忽略</a>'
+                    text = '已成功上传' + stats.successNum+ '个文件至服务器，'+
+                        stats.uploadFailNum + '个上传失败，<a class="retry" href="#">重新上传</a>失败文件或<a class="ignore" href="#">忽略</a>'
                 }
 
             } else {
                 stats = uploader.getStats();
-                text = '共' + fileCount + '张（' +
+                text = '共' + fileCount + '个（' +
                         WebUploader.formatSize( fileSize )  +
-                        '），已上传' + stats.successNum + '张';
+                        '），已上传' + stats.successNum + '个';
 
                 if ( stats.uploadFailNum ) {
-                    text += '，失败' + stats.uploadFailNum + '张';
+                    text += '，失败' + stats.uploadFailNum + '个';
                 }
             }
 
-            $info.html( text );
+           // $info.html( text );
         }
 
         function setState( val ) {
@@ -439,14 +433,14 @@
 
                 case 'ready':
                     $placeHolder.addClass( 'element-invisible' );
-                    $( '#filePicker2' ).removeClass( 'element-invisible');
+                    $( '#uploader-filePicker2' ).removeClass( 'element-invisible');
                     $queue.show();
                     $statusBar.removeClass('element-invisible');
                     uploader.refresh();
                     break;
 
                 case 'uploading':
-                    $( '#filePicker2' ).addClass( 'element-invisible' );
+                    $( '#uploader-filePicker2' ).addClass( 'element-invisible' );
                     $progress.show();
                     $upload.text( '暂停上传' );
                     break;
@@ -458,7 +452,7 @@
 
                 case 'confirm':
                     $progress.hide();
-                    $( '#filePicker2' ).removeClass( 'element-invisible' );
+                    $( '#uploader-filePicker2' ).removeClass( 'element-invisible' );
                     $upload.text( '开始上传' );
 
                     stats = uploader.getStats();
@@ -516,6 +510,16 @@
             removeFile( file );
             updateTotalProgress();
 
+        };
+        
+        uploader.onUploadSuccess = function( file, data ) {
+        	if(data != null && 
+        	   data.result == "1"){
+        	   var $a = $( '<a href="' + data.filePath + '">' +
+                           data.fileName +
+                         '</a>&nbsp;&nbsp;');
+        	   $a.appendTo($("#uploader-data"));
+ 			}
         };
 
         uploader.on( 'all', function( type ) {

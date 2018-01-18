@@ -6,6 +6,33 @@
 (function($) {
   $.jqueryTool = {
     /**
+     *文件上传
+     *@param: prefix : struts后台接收参数名
+     *@param: fileType : 文件类型
+     *@param: elementId : 展示容器Id
+     */
+     webUploader:function(prefix, elementId){
+        uploader.addButton({
+           id: '#uploader-filePicker2',
+           label: '添加'
+        });
+        $("#uploader-dndArea").removeClass( 'element-invisible' );
+        $("#uploader-wrapper").dialog({
+           height:630,
+           width:800,
+           modal:true,
+           close: function( event, ui ) {
+        	   $(".filelist").html("");
+        	   $("#" + elementId).html($("#uploader-data").html());
+        	   $("#uploader-data").find("a").each(function(i){
+        		   $('<input name="' + prefix + '[' + i + '].filePath" type="hidden" value="' + $(this).attr('href') + '">').appendTo($("#" + elementId));
+        		   $('<input name="' + prefix + '[' + i + '].fileName" type="hidden" value="' + $(this).text() + '">').appendTo($("#" + elementId));
+        	   });
+        	   $("#uploader-data").html("");
+           }
+       });
+     },
+    /**
      *控制DIV的显示和隐藏
 	 *@param name : 控制元素id
 	 *@param options : 值和DIV的Id的对应关系

@@ -101,17 +101,17 @@ public class FileUploadServlet extends HttpServlet {
 		return newFileName;
 	}
 	
-	private static String getNormal(String url, String fileName) {
+	private static String getNormal(String filePath, String fileName) {
 		JSONObject obj = new JSONObject();
-		obj.put("error", 0);
-		obj.put("url", url);
-		obj.put("name", fileName);
+		obj.put("result", 1);
+		obj.put("filePath", filePath);
+		obj.put("fileName", fileName);
 		return obj.toString();
 	}
 
 	private static String getError(String message) {
 		JSONObject obj = new JSONObject();
-		obj.put("error", 1);
+		obj.put("result", 0);
 		obj.put("message", message);
 		return obj.toString();
 	}
