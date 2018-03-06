@@ -1,3 +1,8 @@
 eclipse.preferences.version=1
+encoding//JAVA-Hibernate3/hibernate.cfg.xml=UTF-8
 encoding//WebRoot/index.jsp=UTF-8
+encoding//WebRoot/javaScript/javaScriptTableTool/jquery-table-tool.js=UTF-8
+encoding//WebRoot/javaScript/javaScriptTableTool/jquery-toolkits.js=UTF-8
+encoding//WebRoot/javaScript/jquery-webupload-0.1.5/jquery-web-uploader-div.js=UTF-8
+encoding//WebRoot/javaScript/jquery-webupload-0.1.5/jquery-web-uploader.js=UTF-8
 encoding//WebRoot/struts2/validate/ValidateBasic_client.jsp=UTF-8
