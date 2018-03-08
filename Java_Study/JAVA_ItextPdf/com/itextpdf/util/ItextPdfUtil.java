@@ -6,19 +6,26 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.dongk.util.JsonConvertUtil;
+import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.PageSize;
 import com.itextpdf.text.pdf.AcroFields;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfStamper;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.tool.xml.XMLWorkerFontProvider;
 import com.itextpdf.tool.xml.XMLWorkerHelper;
 
 import freemarker.template.Configuration;
@@ -71,6 +78,8 @@ public class ItextPdfUtil {
 	        }
 	        
 	       stamper.setFormFlattening(true);//设置pdf为不可编辑  
+	       
+	       return relativeAll;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -120,16 +129,33 @@ public class ItextPdfUtil {
 	        ByteArrayOutputStream htmlStream = new ByteArrayOutputStream();
 	        temp.process(data, new OutputStreamWriter(htmlStream,"UTF-8"));
 	        
-	        Document document = new Document();
+	        Document document = new Document(PageSize.A4);
 	        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(filePath));
 	        document.open();
-	        XMLWorkerHelper.getInstance().parseXHtml(writer, document,new ByteArrayInputStream(htmlStream.toByteArray()));
+	        
+	        XMLWorkerHelper worker = XMLWorkerHelper.getInstance();
+	        worker.parseXHtml(writer, 
+	        		          document, 
+	        		          new ByteArrayInputStream(htmlStream.toByteArray()), 
+	        		          null, 
+	        		          Charset.forName("UTF-8"), 
+	        		          new AsianFont());
+	        
 	        document.close();
+	        
+	        return relativeAll;
 	        
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
     	return "";
+    }
+    
+    private static class AsianFont extends XMLWorkerFontProvider{
+		@Override
+		public Font getFont(String fontname, String encoding, boolean embedded, float size, int style,BaseColor color) {
+            return new Font(CHINESE_FONT, 12, Font.NORMAL);
+		}
     }
     
     public static void main(String args[]) {
@@ -142,10 +168,22 @@ public class ItextPdfUtil {
     	//html模板
     	Map root = new HashMap();
         root.put("user", "Big Joe");
+        
         Product latest = new Product();
         latest.setUrl("products/greenmouse.html");
         latest.setName("green mouse");
         root.put("latestProduct", latest);
+        
+        List loves = new ArrayList<Hobby>();
+        Hobby love1 = new Hobby();
+        love1.setLevel("6");
+        love1.setName("basketball");
+        Hobby love2 = new Hobby();
+        love2.setLevel("8");
+        love2.setName("足球");
+        loves.add(love1);
+        loves.add(love2);
+        root.put("loves", loves);
         
     	createPdfByHtml(root,"D:\\upload","tgs_test.html");
     }

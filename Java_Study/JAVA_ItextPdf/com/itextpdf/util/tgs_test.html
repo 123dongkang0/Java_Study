@@ -6,5 +6,19 @@
   <h1>Welcome ${user}!</h1>
   <p>Our latest product:</p>
   <a href="${latestProduct.url}">${latestProduct.name}</a>!
+  
+  <table>
+     <tr>
+        <td>Ï²°®¼¶±ð</td>
+        <td>Ãñ³Æ</td>
+     </tr>
+      <#list loves as love>
+         <tr>
+            <td>${love.level}</td>
+            <td>${love.name}</td>
+         </tr>
+      </#list>
+  </table>
+  
 </body>
 </html>
