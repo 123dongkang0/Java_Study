@@ -8,6 +8,7 @@
 	<classpathentry kind="src" path="JAVA-SpringMvc"/>
 	<classpathentry kind="src" path="JAVA-Hibernate3"/>
 	<classpathentry kind="src" path="Config"/>
+	<classpathentry kind="src" path="JAVA_ItextPdf"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="com.genuitec.runtime.library/com.genuitec.jstl_1.2.1">
@@ -53,5 +54,9 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/poi-scratchpad-3.13-20150929.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/xmlbeans-2.6.0.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-beanutils-1.8.0.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/itext-1.3.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/itext-asian-5.2.0.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/itextpdf-5.5.0.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/xmlworker-5.5.0.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>
