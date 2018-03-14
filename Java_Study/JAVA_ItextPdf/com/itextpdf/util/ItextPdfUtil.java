@@ -3,6 +3,7 @@ package com.itextpdf.util;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -16,10 +17,14 @@ import java.util.Map;
 
 import com.dongk.util.JsonConvertUtil;
 import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Chapter;
+import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.AcroFields;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfReader;
@@ -158,6 +163,69 @@ public class ItextPdfUtil {
 		}
     }
     
+    /**
+    * <b>Description:得到文件相对路径。</b><br> 
+    * @Note
+    * <b>Author:dongk</b>
+    * <br><b>Date:</b> 2018年3月14日 上午9:28:27
+    * <br><b>Version:</b> 1.0
+    * <br><b>param:</b>
+    * <br><b>return:</b>返回生成的相对路径。
+    */
+    public static String getFilePath() {
+    	String fileName = new SimpleDateFormat("yyyyMMddhhmmssSSS").format(new Date()) + (int)(Math.random()*9000+1000) + ".pdf";
+  		return  FILE_RELATIVE + File.separator + fileName;
+    }
+    
+    /**
+    * <b>Description:创建Document对象，并且打开。</b><br> 
+    * @Note
+    * <b>Author:dongk</b>
+    * <br><b>Date:</b> 2018年3月14日 上午9:24:48
+    * <br><b>Version:</b> 1.0
+    * <br><b>param:filePath：文件路径(相对)</b>
+    * <br><b>return:</b>
+    */
+    public static Document  createDocument(String filePath) throws IOException, DocumentException {
+    	String  filePathAll = FILE_ROOT + File.separator + filePath;
+    	
+    	Document document = new Document();
+    	PdfWriter.getInstance(document, new FileOutputStream(filePathAll));
+    	document.open();
+    	
+    	return document;
+    }
+    
+    public static void closeDocument(Document document) {
+    	document.close();
+    }
+    
+    public static final String FONT_POSITION = "C:\\Windows\\Fonts\\STZHONGS.TTF";    //字体的位置
+    
+    /**
+    * <b>Description:增加标题。</b><br> 
+    * @Note
+    * <b>Author:dongk</b>
+    * <br><b>Date:</b> 2018年3月14日 上午9:38:54
+    * <br><b>Version:</b> 1.0
+    * <br><b>param:</b>
+    * <br><b>return:</b>
+    */
+    public static void addTitle(Document doucment, String title) throws DocumentException {
+    	Font chapterFont = FontFactory.getFont(FONT_POSITION, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+    	chapterFont.setSize(18);   
+    	
+    	Chunk chunk = new Chunk(title,chapterFont);
+    	
+    	Paragraph paragraph = new Paragraph(chunk);
+    	paragraph.setAlignment(1);   //段落居中对齐
+    	
+    	Chapter chapter = new Chapter(paragraph, 1);
+    	chapter.setNumberDepth(0);
+    	
+    	doucment.add(chapter);
+    }
+    
     public static void main(String args[]) {
     	//1. pdf模板
 //    	JSONObject data = new JSONObject();
@@ -186,6 +254,17 @@ public class ItextPdfUtil {
         root.put("loves", loves);
         
     	createPdfByHtml(root,"D:\\upload","tgs_test.html");
+    	
+//    	try {
+//			Document document = createDocument(getFilePath());
+//			addTitle(document,"船员名单");
+//			closeDocument(document);
+//			
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		} catch (DocumentException e) {
+//			e.printStackTrace();
+//		}
     }
 }
 
