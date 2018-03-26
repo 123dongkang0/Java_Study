@@ -14,15 +14,14 @@ import java.util.Date;
 import sun.misc.BASE64Encoder;
 
 public class FileUtils {
-	
 	/**
-	 * 将文件转成base64 字符串
-	 * @param path文件路径
-	 * @return  base64字符串
-	 * @throws Exception
-	 */
+	  * 将文件转成base64 字符串
+	  * @param path文件路径
+	  * @return  * 
+	  * @throws Exception
+	  */
+
 	 public static String encodeBase64File(String pathFile) throws Exception {
-		 
 		 FileInputStream fin =null;  
 	        BufferedInputStream bin =null;  
 	        ByteArrayOutputStream baos = null;  
@@ -80,8 +79,8 @@ public class FileUtils {
 	 * @return
 	 */
 	public static String copyFile(String oldPath, String dir, String fileName,boolean addYMD) {
-		BufferedInputStream inStream =  null;
-	    BufferedOutputStream fs = null;
+		InputStream inStream =  null;
+		FileOutputStream fs = null;
 		try {
 			String newFileDir = "";
 			if(addYMD){
@@ -89,12 +88,12 @@ public class FileUtils {
 			}else{
 				newFileDir = createFileDir(dir);
 			}
-			newFileDir = newFileDir + System.getProperty("file.separator") + fileName;
+			newFileDir = newFileDir + "\\" + fileName;
 			int byteread = 0;
 			File oldfile = new File(oldPath);
 			if (oldfile.exists()) { // 文件存在时
-				 inStream = new BufferedInputStream(new FileInputStream(oldPath)); // 读入原文件
-				 fs = new BufferedOutputStream(new FileOutputStream(newFileDir));
+				 inStream = new FileInputStream(oldPath); // 读入原文件
+				 fs = new FileOutputStream(newFileDir);
 				byte[] buffer = new byte[1444];
 				while ((byteread = inStream.read(buffer)) != -1) {
 					fs.write(buffer, 0, byteread);
@@ -125,11 +124,12 @@ public class FileUtils {
 		}
 		return "";
 	}
-
+	
 	/**
-	 * Function : 创建文件夹 ;       
-	 * @param sFileDir : 文件夹路径
-	 * @return 文件夹路径
+	 * Function : copyFile;           
+	 * Author : dongk Version : 1.0, First complete date : 2017年07月25日 
+	 * Description : 创建文件夹 
+	 * @return
 	 */
 	public static String createFileDir(String sFileDir) {
 		File file = new File(sFileDir);
@@ -147,18 +147,37 @@ public class FileUtils {
 	}
 	
 	/**
-	 * Function : 得到指定文件夹下创建年月日目录的路径String           
-	 * @param path : 指定文件夹
-	 * @return  在指定文件夹下加入日期信息后的路径
+	 * Function : delFile;           
+	 * Author : dongk Version : 1.0, First complete date : 2017年07月25日 
+	 * Description : 删除文件
+	 * @return
+	 */
+	public static void delFile(String filePathAndName) throws Exception{
+		try {
+			String filePath = filePathAndName;
+			filePath = filePath.toString();
+			java.io.File myDelFile = new java.io.File(filePath);
+			myDelFile.delete();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Function : copyFile;           
+	 * Author : dongk Version : 1.0, First complete date : 2017年07月25日 
+	 * Description : 得到指定文件夹下创建年月日目录的路径String
+	 * @return
 	 */
 	public static String getDatePath(String path){
 		Date date = new Date();
 		return path 
-			+ System.getProperty("file.separator")
+			+ FilePathUtil.SEPARATOR
 			+ DateHelper.getDateFormatStr("yyyy",date)
-			+ System.getProperty("file.separator") 
+			+ FilePathUtil.SEPARATOR 
 			+ DateHelper.getDateFormatStr( "MM",date)
-			+ System.getProperty("file.separator") 
+			+ FilePathUtil.SEPARATOR 
 			+ DateHelper.getDateFormatStr( "dd",date);
 	}
 }

@@ -10,6 +10,8 @@ public class StringUtils {
 	public static <T>  String  dataToString(T source){
 		if(source == null){
 			return "";
+		}if(source instanceof Integer){
+			return (String) String.valueOf(source);
 		}if(source instanceof String){
 			return (String) source;
 		}if(source instanceof Date){
@@ -46,6 +48,8 @@ public class StringUtils {
 			return null;
 		}else if(clazz.equals(Date.class)){
 			return (T) DateHelper.strToFormattedDate(str, "yyyy-MM-dd HH:mm:ss");
+		}else if(clazz.equals(Integer.class)){
+			return (T) new Integer(str);
 		}else if(clazz.equals(Long.class)){
 			return (T) new Long(str);
 		}else if(clazz.equals(Double.class)){
@@ -68,5 +72,47 @@ public class StringUtils {
 		}
 	}
 	
+	/**
+	 * 对于形如 "CN/中国" 的字符串，
+	 * 获取"CN"部分
+	 */
+	public static String getCode(String str){
+		if(str == null || "".equals(str.trim())){
+			return null;
+		}else{
+			String[] strArray =  str.split("/");  
+			if(strArray != null && strArray.length >= 1){
+				return strArray[0];
+			}
+		}
+		return null;
+	}
 	
+	/**
+	 * 对于形如 "CN/中国" 的字符串，
+	 * 获取"中国"部分
+	 */
+	public static String getName(String str){
+		if(str == null || "".equals(str.trim())){
+			return null;
+		}else{
+			String[] strArray =  str.split("/");  
+			if(strArray != null && strArray.length >= 2){
+				return strArray[1];
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * 将数组转换成字符串，每个元素使用 ";" 隔开 
+	 */
+	public static String arrayTostr(String[] arrays){
+		StringBuilder returnStr = new StringBuilder();
+		for(String str : arrays){
+			returnStr.append(";" + str);
+		}
+		returnStr.deleteCharAt(0);
+		return returnStr.toString();
+	}
 }

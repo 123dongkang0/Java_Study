@@ -10,7 +10,7 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/JAVA-SpringMvc"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/JAVA-Hibernate3"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/Config"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/JAVA_ItextPdf"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/JAVA_Pdf"/>
         <property name="java-output-path" value="/Java_Study/WebRoot/WEB-INF/classes"/>
         <property name="context-root" value="Java_Study"/>
     </wb-module>

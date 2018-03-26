@@ -1,5 +1,6 @@
 package com.dongk.spring.util;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
@@ -186,4 +187,8 @@ public class StringUtils {
 		return (str != null && str.length() > 0);
 	}
 	
+	public static void main(String args[]) {
+		String str = "d://cache\\aa";
+		System.out.println(str.replace("\\", File.separator));
+	}
 }
