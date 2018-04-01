@@ -1,4 +1,4 @@
-package com.java8.param;
+package com.java802.param;
 
 import java.util.ArrayList;
 import java.util.List;
