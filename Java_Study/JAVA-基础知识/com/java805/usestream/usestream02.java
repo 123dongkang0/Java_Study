@@ -1,4 +1,4 @@
-package com.java804.usestream;
+package com.java805.usestream;
 
 import java.util.Arrays;
 import java.util.List;
@@ -97,6 +97,16 @@ public class usestream02 {
           List<String[]> collect = words.stream()
 		          .map(d -> d.split(""))
 		          .collect(Collectors.toList());
+          
+          /**
+           * 2.使用flatMap来解决这个问题 
+           */
+          List<String> collect2 = words.stream()
+	          .map(w -> w.split(""))
+	          .flatMap(Arrays :: stream)  //将各个生成流扁平化为单个流
+	          .distinct()
+	          .collect(Collectors.toList());
+          collect2.forEach(d -> System.out.println(d));
     }
 
 	
