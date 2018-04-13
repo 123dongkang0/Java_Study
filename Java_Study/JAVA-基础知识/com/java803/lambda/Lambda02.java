@@ -33,7 +33,7 @@ public class Lambda02 {
 	}
 
 	public static String processFile(BufferedReaderProcessor p )throws IOException{
-		try(BufferedReader br = new BufferedReader(new FileReader("E:\\vss\\data.txt"))){
+		try(BufferedReader br = new BufferedReader(new FileReader("E:\\vss\\data.txt"))){ //这种写法不用去关闭流
 			return p.priccess(br);
 		}
 	}

@@ -108,6 +108,37 @@ public class usestream02 {
 	          .collect(Collectors.toList());
           collect2.forEach(d -> System.out.println(d));
     }
+    
+    /**
+     * 返回一个数组的平方值 
+     */
+    @Test
+    public void test05() {
+    	List<Integer>   datas = Arrays.asList(1,2,3,4,5);
+    	List<Integer> suqare = datas.stream()
+					    	.map(d -> d * d)
+					    	.collect(Collectors.toList());
+    	suqare.forEach(d -> System.out.println(d));
+    }
+    
+    /**
+     *     给定两个数字列表，如何返回所有的数对呢？例如，给定列表[1, 2, 3]和列表[3, 4]，应
+     *  该返回[(1, 3), (1, 4), (2, 3), (2, 4), (3, 3), (3, 4)]。为简单起见，你可以用有两个元素的数组来代表数对。 
+     */
+    @Test
+    public void test06() {
+    	List<Integer>   data1 = Arrays.asList(1,2,3);
+    	List<Integer>   data2 = Arrays.asList(3,4);
+    	
+    	List<Integer[]> collect = data1.stream()
+    	.flatMap(x -> {
+    		return data2.stream().map(y -> {
+    			return new Integer[] {x,y};
+    		});
+    	}).collect(Collectors.toList());
+    	
+    	collect.forEach(d -> System.out.println(d[0] + "," + d[1]));
+    }
 
 	
 }
