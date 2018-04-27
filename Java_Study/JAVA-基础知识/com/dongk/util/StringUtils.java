@@ -2,6 +2,8 @@ package com.dongk.util;
 
 import java.util.Date;
 
+import org.apache.commons.codec.binary.Base64;
+
 public class StringUtils {
     
 	/**
@@ -115,4 +117,37 @@ public class StringUtils {
 		returnStr.deleteCharAt(0);
 		return returnStr.toString();
 	}
+	
+	/**
+	 * @Description 生成n位随机数
+	 * @param n
+	 * @return
+	 */
+	public static String generateRandom(int n) {
+		Random random = new Random();
+		StringBuffer sb = new StringBuffer();                
+		for(int i=0; i<n; i++)
+			sb.append(random.nextInt(10));
+		return sb.toString();
+	}
+	
+	 /**
+	 * @Description 得到base64编码的字符串
+	 * @param str
+	 * @return
+	 */
+	public static String getEncodeBase64(String str) {
+		 Base64 base64 = new Base64();
+		 return new String(base64.encode(str.getBytes()));
+	 }
+	
+	 /**
+	  * @Description 得到base64编码的字符串
+	  * @param str
+	  * @return
+	  */
+	public static String getDecodeBase64(String str) {
+		 Base64 base64 = new Base64();
+		 return new String(base64.decode(str.getBytes()));
+	 }
 }
