@@ -1,6 +1,8 @@
 package com.dongk.util;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
+import java.util.Random;
 
 import org.apache.commons.codec.binary.Base64;
 
@@ -145,9 +147,10 @@ public class StringUtils {
 	  * @Description µÃµ½base64±àÂëµÄ×Ö·û´®
 	  * @param str
 	  * @return
+	 * @throws UnsupportedEncodingException 
 	  */
-	public static String getDecodeBase64(String str) {
+	public static String getDecodeBase64(String str) throws UnsupportedEncodingException {
 		 Base64 base64 = new Base64();
-		 return new String(base64.decode(str.getBytes()));
+		 return new String(base64.decode(str.getBytes()),"UTF-8");
 	 }
 }
