@@ -137,8 +137,9 @@ public class StringUtils {
 	 * @Description 得到base64编码的字符串
 	 * @param str
 	 * @return
+	 * @throws Exception 
 	 */
-	public static String getEncodeBase64(String str) {
+	public static String getEncodeBase64(String str) throws Exception {
 		 Base64 base64 = new Base64();
 		 return new String(base64.encode(str.getBytes()));
 	 }
@@ -147,10 +148,10 @@ public class StringUtils {
 	  * @Description 得到base64编码的字符串
 	  * @param str
 	  * @return
-	 * @throws UnsupportedEncodingException 
+	 * @throws Exception 
 	  */
-	public static String getDecodeBase64(String str) throws UnsupportedEncodingException {
+	public static String getDecodeBase64(String str) throws Exception {
 		 Base64 base64 = new Base64();
-		 return new String(base64.decode(str.getBytes()),"UTF-8");
+		 return new String(base64.decode(str.getBytes()));
 	 }
 }
