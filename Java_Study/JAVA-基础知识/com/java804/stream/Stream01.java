@@ -8,6 +8,7 @@ import java.util.List;
 import org.junit.Test;
 
 import com.java8.model.Dish;
+import com.java8.model.StreamConstant;
 
 /**
 * <b>Description:

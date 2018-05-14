@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.junit.Test;
 
 import com.java8.model.Dish;
+import com.java8.model.StreamConstant;
 
 /**
 * <b>Description:
