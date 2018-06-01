@@ -13,7 +13,7 @@ public class UrlResourceTest {
 			UrlResource ur = new UrlResource("file:D:\\menuCode.xml");
 			System.out.println(ur.getFilename());
 			System.out.println(ur.getDescription());
-			
+			System.out.println("test git");
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
