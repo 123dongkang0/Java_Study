@@ -75,4 +75,23 @@ public class usestream03 {
 		System.out.println(dish.get().getName());
 	}
 	
+	/**
+     * 5.3.4 查找第一个元素
+     * 
+     *    findFirst 找出第一个平方能被3整除的数
+     *    
+     */
+	@Test
+	public void test04() {
+		List<Integer> someNumbers  = Arrays.asList(1,2,3,4,5);
+		Optional<Integer> firstSquareDivisibleByThree = 
+				 someNumbers.stream()
+				 .map(x -> x * x)
+				 .filter(x -> x % 3 == 0)
+				 .findFirst();
+		System.out.println(firstSquareDivisibleByThree.get());
+	}
+	
+	
+	
 }
