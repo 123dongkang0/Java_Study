@@ -47,6 +47,7 @@ public class Lambda06 {
 	/**
 	 * 3.6.2 构造函数的引用
 	 *     Function 只是适合有一个参数的构造函数。
+	 *     //Integer ： 表示构造方法的参数类型是Integer，且只有一个参数
 	 */
 	@Test
 	public void test02() {
@@ -75,6 +76,10 @@ public class Lambda06 {
 	 */
 	@Test
 	public void test04() {
+		/**
+		 * Integer : 表示构造函数的第一个参数的类型是Integer
+		 * String : 标识构造函数的第二个参数的类型是String 
+		 */
 		BiFunction<Integer,String, Apple> c3 = Apple::new;
 		Apple a3 = c3.apply( 110,"green");
 		
