@@ -43,7 +43,7 @@ public class ReadMenuConfig{
 		
 		    }
 		    if (nname.equals(name)){
-		    	String str = "update t_menu_info set url='" + url + "', image='" + images + "'  where menu_code  = '" + nname + "';";
+		    	String str = "update t_menu_info set url='" + url + "', image='" + images + "'  where menu_code  = '" + nname + "' and biz_MODULE in ('MFTBGHCKAC','MFTHWXXGXAB','MFTYSGJSBAA');";
 		    	System.out.println(str);
 		    	return;
 		    }
