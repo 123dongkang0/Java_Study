@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>8.6 闭包</title>
+<script>
+
+		/*
+		   1.什么是对象?
+		         对象是JavaScript的基本数据类型。对象是一种复合值。
+		   
+		   2.对象的常见用法
+		         创建 、设置、查找、删除、 检测和枚举。
+		         
+		   3. 对象的原型
+		  
+		   4.对象的类
+		   
+		   5.对象的分类
+		      .内置对象
+		      .宿主对象   ：特定的web浏览器特定的对象。
+		      .自定义对象
+		      .自有属性
+		      .继承属性  ： 是在对象的原型对象中定义的属性。
+		*/
+		
+		
+		// 一、创建对象。
+		//1.1 对象直接量
+		var book = {
+				"main title" : "JavaScript",
+				"sub-titile" : "The Definitive Guide",
+				"for " : "all audiences",
+				 author : {
+					 firstname: "David",
+					 surname: "Flanagan"
+				 }
+		    };
+		
+		//1.2 通过new创建对象
+		var d = new Date();
+		
+		//1.3 通过原型创建对象
+		var o1 = Object.create({x:1, y:2});   //o1的原型对象是{x:1, y:2}
+
+</script>
+</head>
+<body>
+
+</body>
+</html>

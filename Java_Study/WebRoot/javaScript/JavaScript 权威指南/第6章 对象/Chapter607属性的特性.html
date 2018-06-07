@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script type="text/javascript" src="Chapter-common.js"></script>
+<script>
+    //1. ECMAScript 3的程序创建的属性都是可写的、可枚举的、可 配置的，
+    // 下面的所有东西都是在ECMAScript 5中才可以使用的。
+    
+    //可配置性： 如果设置为不可配置的，则不能对其可读、可枚举的特性进行修改。
+    
+    //2.检测对象属性的特性
+    console.log(Object.getOwnPropertyDescriptor({x:1},"x"));
+
+    console.log(Object.getOwnPropertyDescriptor({},"x"));  //undefined，没这个属性
+    console.log(Object.getOwnPropertyDescriptor({},"toString"));  //undefined，继承属性
+
+   //3.添加一个不可以枚举的属性
+   var o = {};
+   Object.defineProperty(o,"x",{
+                                value : 1,
+                                writable : true,
+                                enumerable : false,
+                                configurable : true
+	                           })     
+  console.log(o.x);   //属性存在，但是不可以枚举
+  console.log("=================================");
+  for(p in o)
+	  cosole.log(p);	
+
+  console.log("=================================");        
+
+  //4.设置为只读  
+   Object.defineProperty(o,"x",{writable : false});
+   o.x = 2;
+   console.log(o.x);   //还是1
+   Object.defineProperty(o,"x",{value : 5});
+   console.log(o.x);   //5， 可以通过上面的方式修改
+
+   console.log("=================================");        
+   
+   //5.设置为不可配置
+   Object.defineProperty(o,"x",{configurable : false});
+
+   Object.defineProperty(o,"x",{value : 8});  //会报错，因为设置了不可配置
+
+   console.log(o.x);   //还是1
+                      
+</script>
+</head>
+<body>
+
+</body>
+</html>

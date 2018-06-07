@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script type="text/javascript" src="Chapter-common.js"></script>
+<script>
+    //1. for/in 循环
+     var o = {x:1, y:2, z:3};
+     for(p in o)
+         console.log(p);   //不会输出不可枚举的属性，比如 toString
+
+    //2. 因为许多实用的工具库给Object.prototype 添加了新的方法或者属性。这些方法或者属性是不能被定义为不可枚举的。
+    // 所以for/in循环的时候需要排除这些方法或者属性。
+    
+    for(p in o)
+    {
+        if(!o.hasOwnProperty(p)) continue;        //跳过集成的属性
+        if(typeof o[p] === "function") continue;  //跳过方法
+    }      
+    
+
+</script>
+</head>
+<body>
+
+</body>
+</html>

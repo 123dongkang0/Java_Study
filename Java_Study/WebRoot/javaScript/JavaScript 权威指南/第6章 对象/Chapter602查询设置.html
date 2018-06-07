@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script type="text/javascript" src="Chapter-common.js"></script>
+<script>
+  var book = {
+		"main title" : "JavaScript",
+		"sub-titile" : "The Definitive Guide",
+		"for " : "all audiences",
+		 author : {
+			 firstname: "David",
+			 surname: "Flanagan"
+		 }
+    };
+
+	//1.属性的获取
+	var author = book.author;   //方式1
+	var name = author["firstname"];  //方式2,推荐使用这种方式
+	alert(name);	
+
+	//2.属性的设置
+	book["sub-titile"] = "ECMAScript";
+
+	//3.属性的继承
+	var o = {};
+	o.x = 1;
+	var p = inherit(o);  //继承自o
+	p.y = 2;
+	var q = inherit(p);  //继承自p
+    alert(q.x + q.y);     //x 和 y都是通过继承得来的
+
+    //4.修改继承的属性
+    var unitcicle = {r : 1};
+    var c = inherit(unitcicle);
+    c.x = 1; c.y = 1;
+    c.r = 2;   //只是会修改自己的属性，而不会修改原型链的属性
+    alert(unitcicle.r);   //我们发现原型对象的值并没有改变
+</script>
+</head>
+<body>
+
+</body>
+</html>

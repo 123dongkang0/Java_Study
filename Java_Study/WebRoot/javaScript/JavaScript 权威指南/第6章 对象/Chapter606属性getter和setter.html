@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script type="text/javascript" src="Chapter-common.js"></script>
+<script>
+    //1. 使用getter 和 setter定义的属性称作 "存取器属性"，它不同于 "数据属性"，数据属性只有一个简单的值
+    // 如果只有getter 则它是只读属性；如果只有setter 则它是只写属性
+    
+
+    //2.使用getter、setter产生严格自增的序列号
+    var serialnum = {
+          $n : 0,  // $标记这是一个私有属性
+          get next(){return this.$n++;},
+          set next(n){
+              if(n >= this.$n) this.$n = n;
+              else throw "序列号的值不能比当前值小";
+          }
+    	}
+    //3.应用场景：智能检测属性的写入值以及在每次属性读取时返回不同值
+    
+    
+</script>
+</head>
+<body>
+
+</body>
+</html>

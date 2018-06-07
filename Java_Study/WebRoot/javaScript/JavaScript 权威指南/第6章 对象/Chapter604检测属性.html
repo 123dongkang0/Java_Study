@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script type="text/javascript" src="Chapter-common.js"></script>
+<script>
+    //1. in运算符
+    var o = {x : 1}
+    console.log("x" in o);  //true x 是 o 的属性
+    console.log("y" in o);  //false y 不是 o 的属性
+    console.log("toString" in o);  //true o 继承 toString 属性
+
+    console.log("===============================");
+    
+    //2.hasOwnProperty();     
+    console.log(o.hasOwnProperty("x"));
+    console.log(o.hasOwnProperty("y"));
+    console.log(o.hasOwnProperty("toString"));  //false 此方法检测不到继承属性
+
+    console.log("===============================");
+    
+    //3.propertyIsEnumerable();
+    //   此方法是hasOwnProperty的增强版，只有检测到是自有属性且这个属性的可枚举性
+    // 为true时它才返回ture。某些内置属性是不可枚举的。
+    
+    console.log("===============================");
+    
+    var q = inherit({ y:2 });
+    q.x = 1;
+    console.log(q.propertyIsEnumerable("x")); //true: o有一个可以枚举的自有属性x
+    console.log(q.propertyIsEnumerable("y")); //false: y是继承来的
+    console.log(Object.prototype.propertyIsEnumerable("toString")); //false 不可枚举
+
+</script>
+</head>
+<body>
+
+</body>
+</html>
