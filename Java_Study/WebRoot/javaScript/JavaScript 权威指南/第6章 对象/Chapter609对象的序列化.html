@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script type="text/javascript" src="Chapter-common.js"></script>
+<script>
+    /**
+      *  1.对象的序列化。
+      *    对象序列化是指将对象的状态转换为字符串
+      */
+
+      o = {x:1, y:{z:[false,null,""]}};   //定义一个测试对象
+      s = JSON.stringify(o);    //序列化
+      console.log(s);
+      p = JSON.parse(s);   //反序列化， p是o的深拷贝
+      console.log(p); 
+
+                      
+</script>
+</head>
+<body>
+
+</body>
+</html>
