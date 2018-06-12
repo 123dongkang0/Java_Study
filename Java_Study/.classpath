@@ -4,7 +4,6 @@
 	<classpathentry kind="src" path="ORACLE"/>
 	<classpathentry kind="src" path="JAVA-设计模式"/>
 	<classpathentry kind="src" path="JAVA-基础知识"/>
-	<classpathentry kind="src" path="JAVA-SpringMvc"/>
 	<classpathentry kind="src" path="JAVA-Hibernate3"/>
 	<classpathentry kind="src" path="Config"/>
 	<classpathentry kind="src" path="JAVA_Pdf"/>

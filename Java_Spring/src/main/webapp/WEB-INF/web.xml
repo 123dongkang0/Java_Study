@@ -4,4 +4,35 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  
+  <!-- 配置 Spring IOC 配置文件路径 -->
+  <context-param> 
+	  <param-name>contextConfigLocation</param-name> 
+	  <param-value>/WEB-INF/applicationContext.xml</param-value> 
+  </context-param> 
+  
+  <!-- 配置 ContextLoaderListener 用以初始化Spring IOC -->
+  <listener>
+	   <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class> 
+  </listener>
+  
+  <!--   配置 DispatcherServlet -->
+  <!-- Servlet的名字和文件名之间是存在对应关系的，如下的servlet对应的配置文件的名字是
+       /WEB-INF/dispatcher-servlet.xml
+   -->
+  <servlet>
+  	  <servlet-name>dispatcher</servlet-name>
+  	  <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  	  <init-param>  
+	    <param-name>contextConfigLocation</param-name>  
+	    <param-value>/WEB-INF/dispatcher-servlet.xml</param-value>  
+	  </init-param>  
+  	  <!-- 使得Dispatcher在服务器启动的时候就初始化 -->
+  	  <load-on-startup>2</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>dispatcher</servlet-name>
+      <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

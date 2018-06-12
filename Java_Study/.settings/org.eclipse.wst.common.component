@@ -6,7 +6,6 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/JAVA-基础知识"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/JAVA-Struts2"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/ORACLE"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/JAVA-SpringMvc"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/JAVA-Hibernate3"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/Config"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/JAVA_Pdf"/>
