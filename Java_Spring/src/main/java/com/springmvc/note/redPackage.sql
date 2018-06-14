@@ -38,3 +38,10 @@ insert into T_RED_PACKET(id,user_id, amount, send_date, total, unit_amount, stoc
  values(1,1, 200000.00, sysdate, 20000, 10.00, 20000,'20万元金额，2万个小红包，每个10元'); 
  
 select * from  T_RED_PACKET;
+
+CREATE SEQUENCE t_user_red_packet_seq_no
+		INCREMENT BY 1 -- 每次加几个
+		START WITH 1 -- 从1开始计数
+		NOMAXvalue -- 不设置最大值
+		NOCYCLE -- 一直累加，不循环
+		CACHE 10;

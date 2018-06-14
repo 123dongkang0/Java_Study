@@ -30,7 +30,7 @@ import redis.clients.jedis.JedisPoolConfig;
 
 @Configuration
 //定义Spring 扫描的包
-@ComponentScan(value= "com.*", includeFilters= {@Filter(type = FilterType.ANNOTATION, value ={Service.class})})
+@ComponentScan(value= "com.red.packa.*", includeFilters= {@Filter(type = FilterType.ANNOTATION, value ={Service.class})})
 //使用事务驱动管理器
 @EnableTransactionManagement
 //实现接口TransactionManagementConfigurer，这样可以配置注解驱动事务
@@ -48,10 +48,10 @@ public class RootConfig implements TransactionManagementConfigurer {
 			return dataSource;
 		}
 		Properties props = new Properties();
-		props.setProperty("driverClassName", "com.mysql.jdbc.Driver");
-		props.setProperty("url", "jdbc:mysql://localhost:3306/chapter22");
-		props.setProperty("username", "root");
-		props.setProperty("password", "123456");
+		props.setProperty("driverClassName", "oracle.jdbc.driver.OracleDriver");
+		props.setProperty("url", "jdbc:oracle:thin:@192.168.1.91:1521:ORACLE");
+		props.setProperty("username", "scott");
+		props.setProperty("password", "tiger");
        props.setProperty("maxActive", "200");
 		props.setProperty("maxIdle", "20");
 		props.setProperty("maxWait", "30000");
@@ -72,7 +72,7 @@ public class RootConfig implements TransactionManagementConfigurer {
 		SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
 		sqlSessionFactory.setDataSource(initDataSource());
 		//配置MyBatis配置文件
-		Resource resource = new ClassPathResource("mybatis-config.xml");
+		Resource resource = new ClassPathResource("red-mybatis-config.xml");
 		sqlSessionFactory.setConfigLocation(resource);
 		return sqlSessionFactory;
 	}

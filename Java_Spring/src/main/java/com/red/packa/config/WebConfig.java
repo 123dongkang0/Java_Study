@@ -34,7 +34,7 @@ public class WebConfig extends AsyncConfigurerSupport {
 	@Bean(name="internalResourceViewResolver")
 	public ViewResolver initViewResolver() {
 		InternalResourceViewResolver viewResolver =new InternalResourceViewResolver();
-		viewResolver.setPrefix("/WEB-INF/jsp/");
+		viewResolver.setPrefix("/WEB-INF/red/");
 		viewResolver.setSuffix(".jsp");
 		return viewResolver;
 	}
