@@ -148,10 +148,10 @@ public class FileZipUtil {
 	}
 	
 	public static void main(String[] args) throws Exception {
-		//FileOutputStream fos1 = new FileOutputStream(new File("c:/mytest01.zip"));
-	    //toZip("D:/8003.pdf", fos1,true);
+		FileOutputStream fos1 = new FileOutputStream(new File("c:/mytest01.zip"));
+	    toZip("D:/8003.pdf", fos1,true);
 		
-	   // System.out.println(FileUtils.encodeBase64File("c:/mytest01.zip"));;
+	    System.out.println(FileUtils.encodeBase64File("c:/mytest01.zip"));;
 	    
 	    FileUtils.decoderBase64File(FileUtils.encodeBase64File("c:/mytest01.zip"), "c:/dongk.zip");
 	}

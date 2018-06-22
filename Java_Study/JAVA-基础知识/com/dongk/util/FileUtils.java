@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Date;
 
+import org.apache.commons.codec.binary.Base64;
+
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
@@ -47,9 +49,9 @@ public class FileUtils {
 	            bout.flush();  
 	             byte[] bytes = baos.toByteArray();  
 	             //sun公司的API  
-	             return encoder.encodeBuffer(bytes).trim();    
+	             //return encoder.encodeBuffer(bytes).trim();    
 	             //apache公司的API  
-	             //return Base64.encodeBase64String(bytes);  
+	             return Base64.encodeBase64String(bytes);  
 	              
 	        } catch (FileNotFoundException e) {  
 	            e.printStackTrace();  
