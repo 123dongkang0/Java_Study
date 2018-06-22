@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Date;
 
+import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
 public class FileUtils {
@@ -67,6 +68,24 @@ public class FileUtils {
 	        }  
 	        return null; 
 
+	 }
+	 
+
+	 /**
+	* <b>Description:将base64编码转换成文件</b><br> 
+	* @Note
+	* <b>Author:dongk</b>
+	* <br><b>Date:</b> 2018年6月22日 上午11:37:04
+	* <br><b>Version:</b> 1.0
+	* <br><b>param:</b>
+	* <br><b>return:</b>
+	*/
+	public static void decoderBase64File(String base64Code, String targetPath)
+	   throws Exception {
+		  byte[] buffer = new BASE64Decoder().decodeBuffer(base64Code);
+		  FileOutputStream out = new FileOutputStream(targetPath);
+		  out.write(buffer);
+		  out.close();
 	 }
 	 
 	 /**
