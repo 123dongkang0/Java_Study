@@ -72,7 +72,7 @@ public class RootConfig implements TransactionManagementConfigurer {
 		SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
 		sqlSessionFactory.setDataSource(initDataSource());
 		//≈‰÷√MyBatis≈‰÷√Œƒº˛
-		Resource resource = new ClassPathResource("red-mybatis-config.xml");
+		Resource resource = new ClassPathResource("com/red/packa/config/red-mybatis-config.xml");
 		sqlSessionFactory.setConfigLocation(resource);
 		return sqlSessionFactory;
 	}
